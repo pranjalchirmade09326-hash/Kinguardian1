@@ -1,3 +1,4 @@
+
 # Python & Virtual Environments
 __pycache__/
 *.py[cod]
@@ -24,11 +25,17 @@ package-lock.json
 
 # Android & Build caches
 **/build/
+**/dist/
+dist/
 **/.gradle/
 **/.kotlin/
 **/local.properties
 *.apk
 *.aab
+*.keystore
+*.jks
+**/Pods/
+*.bak
 
 # Environment variables & secrets
 .env
@@ -36,9 +43,13 @@ package-lock.json
 *.pem
 *.key
 
-# OS files
+# OS files & Editors
 .DS_Store
 Thumbs.db
+.idea/
+.vscode/
+.agents/
+
 
 # Databases
 *.db
