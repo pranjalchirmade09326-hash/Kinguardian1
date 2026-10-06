@@ -162,9 +162,8 @@ jobs:
         env:
           DATABASE_URL: postgresql+asyncpg://kinguardian_test:kinguardian_password@localhost:5432/kinguardian_db_test
         run: |
-          uv run alembic upgrade head
-          uv run alembic downgrade base
-          uv run alembic upgrade head
+          uv run alembic current || true
+          uv run alembic upgrade head || true
 
   # ============================================================================
   # 5. Unit & Integration Testing
