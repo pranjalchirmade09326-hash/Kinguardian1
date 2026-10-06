@@ -14,13 +14,21 @@ htmlcov/
 
 # Node & Mobile
 node_modules/
+**/node_modules/
 .expo/
-dist/
+**/.expo/
 npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
 package-lock.json
-kinguard-mobile/
+
+# Android & Build caches
+**/build/
+**/.gradle/
+**/.kotlin/
+**/local.properties
+*.apk
+*.aab
 
 # Environment variables & secrets
 .env

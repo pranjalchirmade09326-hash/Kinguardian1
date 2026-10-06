@@ -1,3 +1,0 @@
-"""
-Alembic Migrations Package
-"""

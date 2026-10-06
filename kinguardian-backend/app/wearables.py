@@ -71,14 +71,14 @@ WEARABLE_PROVIDERS = [
     },
     {
         "id": "health_connect",
-        "name": "Google Fit & Health Connect",
+        "name": "Google Fit / Health Connect",
         "category": "mobile_sdk",
         "description": "Direct on-device Health Connect & Google Fit sync for Android.",
         "badge": "Native Android",
         "auth_type": "native",
         "status": "available",
         "supported_scopes": ["activity", "heart_rate", "sleep"],
-        "default_device": "Google Fit / Android Phone",
+        "default_device": "Google Fit / Health Connect",
         "default_device_id": "google_health_connect"
     },
     {
@@ -230,19 +230,25 @@ class DefaultWearableDataGateway:
             sleep_mins = raw_payload.get("sleep_minutes") or raw_payload.get("durationInSeconds", 27000) // 60
             device_id = raw_payload.get("device_id", "garmin_venu_3")
         elif prov == "fitbit":
-            steps = raw_payload.get("steps") or raw_payload.get("summary", {}).get("steps", 3560)
+            raw_s = raw_payload.get("steps")
+            if raw_s is None:
+                raw_s = raw_payload.get("summary", {}).get("steps")
+            steps = int(raw_s) if raw_s is not None else 0
             heart_rate = raw_payload.get("heart_rate") or raw_payload.get("restingHeartRate", 72)
-            sleep_mins = raw_payload.get("sleep_minutes") or 430
+            sleep_mins = raw_payload.get("sleep_minutes") or 460
             device_id = raw_payload.get("device_id", "fitbit_charge_6")
         elif prov == "health_connect":
-            steps = raw_payload.get("steps") or raw_payload.get("summary", {}).get("steps", 4150)
-            heart_rate = raw_payload.get("heart_rate") or 70
-            sleep_mins = raw_payload.get("sleep_minutes") or 450
+            raw_s = raw_payload.get("steps")
+            if raw_s is None:
+                raw_s = raw_payload.get("summary", {}).get("steps")
+            steps = int(raw_s) if raw_s is not None else 0
+            heart_rate = raw_payload.get("heart_rate") or 0
+            sleep_mins = raw_payload.get("sleep_minutes") or 0
             device_id = raw_payload.get("device_id", "google_health_connect")
         else:
-            steps = raw_payload.get("steps", 3420)
+            steps = raw_payload.get("steps", 0)
             heart_rate = raw_payload.get("heart_rate", 72)
-            sleep_mins = raw_payload.get("sleep_minutes", 420)
+            sleep_mins = raw_payload.get("sleep_minutes", 460)
             device_id = raw_payload.get("device_id", "apple_watch_s9")
 
         return {
