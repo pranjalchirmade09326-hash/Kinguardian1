@@ -4,7 +4,7 @@ Revision ID: 0002_add_auth_fields
 Revises: 0001_initial_platform
 Create Date: 2026-09-04
 """
-from alembic import op
+from alembic import context, op
 import sqlalchemy as sa
 
 revision = "0002_add_auth_fields"
@@ -14,6 +14,12 @@ depends_on = None
 
 
 def upgrade() -> None:
+    if context.is_offline_mode():
+        op.add_column("profiles", sa.Column("password_hash", sa.String(255), nullable=True))
+        op.add_column("profiles", sa.Column("role", sa.String(32), nullable=False, server_default="coordinator"))
+        op.add_column("profiles", sa.Column("is_active", sa.Boolean(), nullable=False, server_default=sa.true()))
+        return
+
     conn = op.get_bind()
     inspector = sa.inspect(conn)
     columns = [col["name"] for col in inspector.get_columns("profiles")]
@@ -27,6 +33,12 @@ def upgrade() -> None:
 
 
 def downgrade() -> None:
+    if context.is_offline_mode():
+        op.drop_column("profiles", "is_active")
+        op.drop_column("profiles", "role")
+        op.drop_column("profiles", "password_hash")
+        return
+
     conn = op.get_bind()
     inspector = sa.inspect(conn)
     columns = [col["name"] for col in inspector.get_columns("profiles")]

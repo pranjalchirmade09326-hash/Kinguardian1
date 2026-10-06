@@ -5889,7 +5889,6 @@ async def post_ai_message(conversation_id: uuid.UUID, body: AIMessageCreate, req
             select(Consent).where(
                 Consent.granted_to_profile_id == actor.id,
                 Consent.subject_id == conversation.subject_id,
-                Consent.family_id == conversation.family_id,
                 Consent.status == "revoked"
             ).order_by(Consent.updated_at.desc())
         )).scalars().first()
@@ -6648,26 +6647,25 @@ async def list_documents(
             select(Consent).where(
                 Consent.granted_to_profile_id == actor.id,
                 Consent.subject_id == subject_id,
-                Consent.family_id == family_id,
                 Consent.status == "revoked"
             ).order_by(Consent.updated_at.desc())
         )).scalars().first()
         if revoked_consent:
             err_msg = "Access Denied: Consent has been revoked by parent."
-        audit = AuditLog(
-            actor_id=actor.id,
-            family_id=family_id,
-            action="consent_access_denied",
-            resource_type="document",
-            resource_id="list",
-            error=err_msg,
-            metadata_json={"enforcement": "real_time_consent_check", "status": revoked_consent.status},
-            occurred_at=datetime.now(timezone.utc),
-            created_at=datetime.now(timezone.utc)
-        )
-        session.add(audit)
-        await session.commit()
-        raise HTTPException(status_code=403, detail=err_msg)
+            audit = AuditLog(
+                actor_id=actor.id,
+                family_id=family_id,
+                action="consent_access_denied",
+                resource_type="document",
+                resource_id="list",
+                error=err_msg,
+                metadata_json={"enforcement": "real_time_consent_check", "status": revoked_consent.status},
+                occurred_at=datetime.now(timezone.utc),
+                created_at=datetime.now(timezone.utc)
+            )
+            session.add(audit)
+            await session.commit()
+            raise HTTPException(status_code=403, detail=err_msg)
 
     query = select(DocumentReference).where(DocumentReference.family_id == family_id)
     if subject_id:
@@ -7723,26 +7721,25 @@ async def ai_query_processing(body: dict, session: AsyncSession = Depends(get_se
                 select(Consent).where(
                     Consent.granted_to_profile_id == actor.id,
                     Consent.subject_id == target_subject_id,
-                    Consent.family_id == family_id,
                     Consent.status == "revoked"
                 ).order_by(Consent.updated_at.desc())
             )).scalars().first()
             if revoked_consent:
                 err_msg = "Access Denied: Consent has been revoked by parent."
-            audit = AuditLog(
-                actor_id=actor.id,
-                family_id=family_id,
-                action="consent_access_denied",
-                resource_type="ai_agent",
-                resource_id="ai_query",
-                error=err_msg,
-                metadata_json={"enforcement": "real_time_consent_check", "status": revoked_consent.status},
-                occurred_at=datetime.now(timezone.utc),
-                created_at=datetime.now(timezone.utc)
-            )
-            session.add(audit)
-            await session.commit()
-            raise HTTPException(status_code=403, detail=err_msg)
+                audit = AuditLog(
+                    actor_id=actor.id,
+                    family_id=family_id,
+                    action="consent_access_denied",
+                    resource_type="ai_agent",
+                    resource_id="ai_query",
+                    error=err_msg,
+                    metadata_json={"enforcement": "real_time_consent_check", "status": revoked_consent.status},
+                    occurred_at=datetime.now(timezone.utc),
+                    created_at=datetime.now(timezone.utc)
+                )
+                session.add(audit)
+                await session.commit()
+                raise HTTPException(status_code=403, detail=err_msg)
         
         # Get or create conversation
         conversation_id = body.get("conversation_id")
