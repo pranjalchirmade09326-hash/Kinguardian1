@@ -393,7 +393,7 @@ export const ParentDevicesScreen: React.FC<ParentDevicesScreenProps> = ({ onBack
   const hasMultipleDevices = activeConnections.length > 1;
 
   return (
-    <ScrollView className="flex-1 bg-[#f8f9fa]">
+    <ScrollView className="flex-1 bg-slate-50" contentContainerStyle={{ paddingBottom: 110 }} showsVerticalScrollIndicator={false}>
       {/* Friendly, Large Top Header */}
       <View className="bg-white px-6 pt-6 pb-5 border-b border-slate-100">
         {onBack && (
@@ -425,7 +425,7 @@ export const ParentDevicesScreen: React.FC<ParentDevicesScreenProps> = ({ onBack
                     context?.setCurrentPersonId(p.id);
                   }}
                   className={`mr-2.5 px-4 py-2 rounded-2xl border flex-row items-center gap-2 ${
-                    isSelected ? 'bg-[#2a14b4] border-[#2a14b4] shadow-xs' : 'bg-slate-50 border-slate-200'
+                    isSelected ? 'bg-[#2563eb] border-[#2563eb] shadow-xs' : 'bg-slate-50 border-slate-200'
                   }`}
                 >
                   <View className={`w-2 h-2 rounded-full ${isSelected ? 'bg-white' : 'bg-emerald-500'}`} />

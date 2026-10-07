@@ -512,7 +512,7 @@ export const WearablesManagementScreen: React.FC<WearablesManagementScreenProps>
   const availableDevices = devices.filter((d) => d.status !== 'connected');
 
   return (
-    <ScrollView className="flex-1 bg-[#f8f9ff]">
+    <ScrollView className="flex-1 bg-[#f8f9ff]" contentContainerStyle={{ paddingBottom: 110 }} showsVerticalScrollIndicator={false}>
       {/* Top App Header */}
       <View className="bg-white border-b border-slate-200 px-5 pt-4 pb-4">
         {/* Navigation Breadcrumb Bar */}

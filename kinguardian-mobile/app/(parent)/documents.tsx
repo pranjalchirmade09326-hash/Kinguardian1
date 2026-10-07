@@ -326,7 +326,7 @@ export default function ParentDocumentsRoute() {
 
   return (
     <DeviceFrame>
-      <View className="flex-1 relative bg-[#f2f2f7]">
+      <View className="flex-1 relative bg-slate-50">
         {/* Header */}
         <View className="bg-white pt-6 pb-5 px-6 border-b border-neutral-100 flex-row items-center justify-between">
           <View>
@@ -345,7 +345,7 @@ export default function ParentDocumentsRoute() {
           </TouchableOpacity>
         </View>
 
-        <ScrollView className="flex-1 p-5 space-y-5">
+        <ScrollView className="flex-1 p-5 space-y-5" contentContainerStyle={{ paddingBottom: 110 }} showsVerticalScrollIndicator={false}>
           {!isUploaded ? (
             <View className="space-y-5">
               <View className="space-y-3">

@@ -188,45 +188,48 @@ export const ParentModeDashboard: React.FC<ParentModeDashboardProps> = ({
   );
 
   return (
-    <View className="flex-1">
-      <ScrollView className="flex-1 bg-gradient-to-b from-slate-50 via-white to-slate-50">
-      {/* iOS Native Style Header Bar */}
-      <View className="bg-white/80 backdrop-blur-xl pt-8 pb-6 px-6 flex-row justify-between items-center border-b border-slate-100/50 shadow-lg">
+    <View className="flex-1 bg-slate-50">
+      <ScrollView
+        className="flex-1 bg-slate-50"
+        contentContainerStyle={{ paddingBottom: 110 }}
+      >
+      {/* Sleek, professional Parent Header Bar */}
+      <View className="bg-white border-b border-slate-200/60 pt-4 pb-3 px-5 flex-row justify-between items-center shadow-xs">
         <View>
-          <View className="flex-row items-center gap-2 mb-1">
-            <View className="bg-gradient-to-r from-emerald-500 to-emerald-600 px-3 py-1 rounded-full">
-              <Text className="text-[10px] font-bold text-white uppercase tracking-wider">
+          <View className="flex-row items-center gap-1.5 mb-1">
+            <View className="bg-emerald-50 border border-emerald-200 px-2.5 py-0.5 rounded-full">
+              <Text className="text-[10px] font-bold text-emerald-700 uppercase tracking-wider">
                 Parent Mode
               </Text>
             </View>
           </View>
-          <Text className="text-2xl font-bold text-slate-900 tracking-tight">
+          <Text className="text-xl font-bold text-slate-900 tracking-tight">
             {t('parentHome.greeting')}
           </Text>
-          <Text className="text-sm text-slate-500 mt-1">
+          <Text className="text-xs text-slate-500 mt-0.5">
             Connected with {coordName}
           </Text>
         </View>
-        <View className="flex-row items-center gap-3">
+        <View className="flex-row items-center gap-2">
           <TouchableOpacity
             accessible={true}
             accessibilityRole="button"
             accessibilityLabel={unreadCount > 0 ? `Notifications, ${unreadCount} unread` : "Notifications"}
             accessibilityHint="Opens notification center"
             onPress={onOpenNotifications}
-            className="w-11 h-11 bg-gradient-to-br from-slate-50 to-slate-100 rounded-3xl items-center justify-center relative active:scale-95 shadow-lg border border-slate-200"
+            className="w-10 h-10 bg-slate-50 border border-slate-200 rounded-full items-center justify-center relative active:scale-95 shadow-xs"
           >
-            <Bell size={18} color="#64748b" />
+            <Bell size={18} color="#2563eb" />
             {unreadCount > 0 && (
-              <View className="absolute -top-1 -right-1 bg-gradient-to-r from-red-500 to-red-600 w-5 h-5 rounded-full items-center justify-center border-2 border-white shadow-lg">
-                <Text className="text-white text-[10px] font-bold">{unreadCount}</Text>
+              <View className="absolute -top-1 -right-1 bg-red-500 w-4 h-4 rounded-full items-center justify-center border border-white">
+                <Text className="text-white text-[9px] font-bold">{unreadCount}</Text>
               </View>
             )}
           </TouchableOpacity>
         </View>
       </View>
 
-      <View className="p-5 space-y-6">
+      <View className="p-4 space-y-4">
         {context?.currentScenario === 'upcoming-appointment' && (
           <TouchableOpacity
             accessible={true}
@@ -234,33 +237,33 @@ export const ParentModeDashboard: React.FC<ParentModeDashboardProps> = ({
             accessibilityLabel="Upcoming appointment tomorrow at 4 PM with Dr. Sharma Cardiology"
             accessibilityHint="Navigates to appointment details and preparations"
             onPress={() => router.push('/(parent)/appointments')}
-            className="bg-white rounded-3xl p-5 shadow-lg shadow-neutral-100 space-y-2 border-l-4 border-[#007aff] active:scale-98"
+            className="bg-white rounded-2xl p-4 shadow-sm border border-blue-200 space-y-1.5 active:scale-98"
           >
-            <Text className="text-sm font-bold text-neutral-900 tracking-tight">
+            <Text className="text-sm font-bold text-slate-900 tracking-tight">
               Your appointment is tomorrow at 4 PM
             </Text>
-            <Text className="text-xs text-neutral-500 leading-normal">
+            <Text className="text-xs text-slate-500 leading-normal">
               Dr. Sharma Cardiology telehealth consult is booked. Tap to view preparations.
             </Text>
           </TouchableOpacity>
         )}
 
         {/* Section 1: How are you feeling? */}
-        <View className="bg-white rounded-3xl p-5 shadow-lg shadow-neutral-100 space-y-4">
+        <View className="bg-white rounded-2xl p-4.5 shadow-sm border border-slate-100 space-y-3.5">
           {hasCheckInRequest && (
-            <View className="bg-blue-50/50 p-4 rounded-xl flex-row items-center gap-3">
-              <Text className="text-xs font-semibold text-[#007aff] flex-1 leading-relaxed">
+            <View className="bg-blue-50 p-3 rounded-xl flex-row items-center gap-2.5 border border-blue-100">
+              <Text className="text-xs font-semibold text-blue-700 flex-1 leading-relaxed">
                 📢 {coordName} sent you a check-in request. Let them know how you are feeling today.
               </Text>
             </View>
           )}
 
           {step === 1 && (
-            <View className="space-y-4">
-              <Text className="text-sm font-semibold text-neutral-500 text-center uppercase tracking-wider">
+            <View className="space-y-3">
+              <Text className="text-xs font-bold text-slate-500 text-center uppercase tracking-wider">
                 {t('parentHome.howAreYouFeeling')}
               </Text>
-              <View className="flex-row gap-3">
+              <View className="flex-row gap-2.5">
                 <TouchableOpacity
                   testID="parent-checkin-feeling-good"
                   accessible={true}
@@ -268,10 +271,10 @@ export const ParentModeDashboard: React.FC<ParentModeDashboardProps> = ({
                   accessibilityLabel="I am feeling good"
                   accessibilityHint="Submits check-in that you are feeling good"
                   onPress={() => handleSelectFeeling('Good')}
-                  className="flex-1 py-5 px-1 rounded-3xl items-center justify-center bg-neutral-50 border border-neutral-100 active:scale-95 min-h-[92px]"
+                  className="flex-1 py-3 px-2 rounded-2xl items-center justify-center bg-slate-50 border border-slate-200/70 active:scale-95 min-h-[84px]"
                 >
-                  <Text className="text-3xl">😊</Text>
-                  <Text className="text-xs font-bold mt-2 text-neutral-700 text-center" numberOfLines={2}>
+                  <Text className="text-2xl">😊</Text>
+                  <Text className="text-xs font-semibold mt-1.5 text-slate-800 text-center" numberOfLines={2}>
                     {t('parentHome.feelingGood')}
                   </Text>
                 </TouchableOpacity>
@@ -283,10 +286,10 @@ export const ParentModeDashboard: React.FC<ParentModeDashboardProps> = ({
                   accessibilityLabel="I am feeling okay"
                   accessibilityHint="Submits check-in that you are feeling okay or tired"
                   onPress={() => handleSelectFeeling('Tired')}
-                  className="flex-1 py-5 px-1 rounded-3xl items-center justify-center bg-neutral-50 border border-neutral-100 active:scale-95 min-h-[92px]"
+                  className="flex-1 py-3 px-2 rounded-2xl items-center justify-center bg-slate-50 border border-slate-200/70 active:scale-95 min-h-[84px]"
                 >
-                  <Text className="text-3xl">😐</Text>
-                  <Text className="text-xs font-bold mt-2 text-neutral-700 text-center" numberOfLines={2}>
+                  <Text className="text-2xl">😐</Text>
+                  <Text className="text-xs font-semibold mt-1.5 text-slate-800 text-center" numberOfLines={2}>
                     {t('parentHome.feelingOkay')}
                   </Text>
                 </TouchableOpacity>
@@ -298,10 +301,10 @@ export const ParentModeDashboard: React.FC<ParentModeDashboardProps> = ({
                   accessibilityLabel="I am feeling unwell"
                   accessibilityHint="Submits check-in that you are feeling unwell and alerts coordinator"
                   onPress={() => handleSelectFeeling('Unwell')}
-                  className="flex-1 py-5 px-1 rounded-3xl items-center justify-center bg-neutral-50 border border-neutral-100 active:scale-95 min-h-[92px]"
+                  className="flex-1 py-3 px-2 rounded-2xl items-center justify-center bg-slate-50 border border-slate-200/70 active:scale-95 min-h-[84px]"
                 >
-                  <Text className="text-3xl">😟</Text>
-                  <Text className="text-xs font-bold mt-2 text-neutral-700 text-center" numberOfLines={2}>
+                  <Text className="text-2xl">😟</Text>
+                  <Text className="text-xs font-semibold mt-1.5 text-slate-800 text-center" numberOfLines={2}>
                     {t('parentHome.feelingNotWell')}
                   </Text>
                 </TouchableOpacity>
@@ -456,21 +459,24 @@ export const ParentModeDashboard: React.FC<ParentModeDashboardProps> = ({
         </View>
 
         {/* Medication Confirmation Prompt */}
-        {/* Medication Confirmation Prompt */}
         {!(isAtorvastatinTaken || isDoseConfirmed) ? (
-          <View className="bg-white rounded-3xl p-5 shadow-lg shadow-neutral-100 space-y-4 border-l-4 border-[#ff3b30]">
+          <View className="bg-white rounded-2xl p-4.5 shadow-sm border border-rose-200 space-y-3">
             <View className="space-y-1">
-              <Text className="text-[9px] font-bold text-[#ff3b30] uppercase tracking-wider">
-                Pending Dose
-              </Text>
-              <Text className="text-lg font-bold text-neutral-900 leading-tight">
+              <View className="flex-row items-center gap-1.5 mb-0.5">
+                <View className="bg-rose-50 px-2 py-0.5 rounded-full border border-rose-200">
+                  <Text className="text-[10px] font-bold text-rose-600 uppercase tracking-wider">
+                    Pending Dose
+                  </Text>
+                </View>
+              </View>
+              <Text className="text-base font-bold text-slate-900 leading-tight">
                 Did you take your evening medicine?
               </Text>
-              <Text className="text-xs font-semibold text-neutral-400 mt-0.5">
+              <Text className="text-xs text-slate-500 mt-0.5">
                 Atorvastatin 20mg (cholesterol support) scheduled at 8:00 PM.
               </Text>
             </View>
-            <View className="flex-row flex-wrap gap-3 pt-1">
+            <View className="flex-row gap-2.5 pt-1">
               <TouchableOpacity
                 testID="parent-home-medication-confirm-yes"
                 accessible={true}
@@ -481,7 +487,7 @@ export const ParentModeDashboard: React.FC<ParentModeDashboardProps> = ({
                   setIsDoseConfirmed(true);
                   onConfirmMedication('rec-5', 'Atorvastatin 20mg', true);
                 }}
-                className="flex-1 min-w-[140px] min-h-[48px] py-3 px-3 bg-emerald-600 rounded-2xl items-center justify-center active:scale-95 shadow-lg"
+                className="flex-1 min-h-[44px] py-2.5 px-3 bg-emerald-600 rounded-xl items-center justify-center active:scale-95 shadow-xs"
               >
                 <Text className="text-white font-bold text-xs text-center">Yes, I took it</Text>
               </TouchableOpacity>
@@ -496,16 +502,16 @@ export const ParentModeDashboard: React.FC<ParentModeDashboardProps> = ({
                     alert(`Please take it before sleep. Alert synced with ${coordName}.`);
                   }
                 }}
-                className="min-w-[100px] min-h-[48px] py-3 px-3 bg-neutral-100 rounded-2xl items-center justify-center active:scale-95"
+                className="min-w-[100px] min-h-[44px] py-2.5 px-3 bg-slate-100 rounded-xl items-center justify-center active:scale-95 border border-slate-200/60"
               >
-                <Text className="text-neutral-500 font-bold text-xs text-center">Not yet</Text>
+                <Text className="text-slate-600 font-semibold text-xs text-center">Not yet</Text>
               </TouchableOpacity>
             </View>
           </View>
         ) : (
-          <View className="bg-emerald-50/90 rounded-3xl p-4 border border-emerald-200 flex-row items-center gap-3 shadow-sm">
-            <View className="w-10 h-10 rounded-full bg-emerald-500 items-center justify-center">
-              <Text className="text-white font-bold text-base">✓</Text>
+          <View className="bg-emerald-50 rounded-2xl p-4 border border-emerald-200 flex-row items-center gap-3 shadow-xs">
+            <View className="w-9 h-9 rounded-full bg-emerald-500 items-center justify-center">
+              <Text className="text-white font-bold text-sm">✓</Text>
             </View>
             <View className="flex-1">
               <Text className="text-xs font-bold text-emerald-900">Evening Medicine Confirmed</Text>

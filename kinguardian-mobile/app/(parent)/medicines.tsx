@@ -23,22 +23,22 @@ export default function ParentMedicinesRoute() {
 
   return (
     <DeviceFrame>
-      <View className="flex-1 relative bg-[#f2f2f7]">
+      <View className="flex-1 relative bg-slate-50">
         {/* Header */}
-        <View className="bg-white pt-6 pb-5 px-6 border-b border-neutral-100 space-y-0.5">
-          <Text className="text-[10px] font-bold text-neutral-400 uppercase tracking-wider">
+        <View className="bg-white pt-4 pb-3.5 px-5 border-b border-slate-100 space-y-0.5">
+          <Text className="text-[10px] font-bold text-slate-400 uppercase tracking-wider">
             {context.currentUser?.name ? `${userName}'s Daily Checklist` : "Daily Medication Checklist"}
           </Text>
           <Text
             testID="parent-medicines-title"
             accessibilityLabel="Today's Medicines"
-            className="text-2xl font-bold text-neutral-900 tracking-tight"
+            className="text-xl font-bold text-slate-900 tracking-tight"
           >
             Today's Medicines
           </Text>
         </View>
 
-        <ScrollView testID="parent-medicines-list" className="flex-1 p-5 space-y-5">
+        <ScrollView testID="parent-medicines-list" className="flex-1 p-4 space-y-4" contentContainerStyle={{ paddingBottom: 110 }}>
           {userMeds.some((m) => m.id === 'rec-5' && m.status !== 'taken') && (
             <View className="bg-orange-50 border border-orange-100/50 rounded-2xl p-4 mb-1.5 shadow-sm">
               <Text className="text-sm font-bold text-neutral-800">

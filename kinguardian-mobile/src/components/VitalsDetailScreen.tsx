@@ -134,9 +134,9 @@ export const VitalsDetailScreen: React.FC<VitalsDetailScreenProps> = ({
   const avgVal = Math.round(currentData.reduce((a, b) => a + b, 0) / currentData.length);
 
   return (
-    <ScrollView className="flex-1 bg-[#fbfaf7]">
+    <ScrollView className="flex-1 bg-slate-50" contentContainerStyle={{ paddingBottom: 60 }}>
       {/* Header Bar */}
-      <View className="flex-row items-center justify-between px-5 py-4 border-b border-[#e2dfd9] bg-[#fbfaf7]">
+      <View className="flex-row items-center justify-between px-5 py-4 border-b border-slate-200 bg-white">
         <TouchableOpacity onPress={onBack} className="p-2 bg-slate-100 rounded-full">
           <ArrowLeft size={16} color="#464554" />
         </TouchableOpacity>
@@ -148,7 +148,7 @@ export const VitalsDetailScreen: React.FC<VitalsDetailScreenProps> = ({
 
       <View className="p-5 space-y-6">
         {/* Parent Header Card */}
-        <View className="bg-white rounded-3xl p-5 border border-[#e2dfd9] shadow-sm flex-row items-center justify-between">
+        <View className="bg-white rounded-2xl p-5 border border-slate-200 shadow-sm flex-row items-center justify-between">
           <View className="flex-row items-center gap-4">
             <Image
               source={{
@@ -193,7 +193,7 @@ export const VitalsDetailScreen: React.FC<VitalsDetailScreenProps> = ({
           </Text>
           <TouchableOpacity
             onPress={() => router.push(`/(coordinator)/parent/${personId}/wearables` as any)}
-            className="bg-white border border-[#e2dfd9] rounded-3xl p-4.5 shadow-sm space-y-3"
+            className="bg-white border border-slate-200 rounded-2xl p-4.5 shadow-sm space-y-3"
           >
             <View className="flex-row items-center justify-between">
               <View className="flex-row items-center gap-2.5">
@@ -233,7 +233,7 @@ export const VitalsDetailScreen: React.FC<VitalsDetailScreenProps> = ({
           <Text className="text-sm font-black text-[#121c2a] uppercase tracking-wider">
             Health today
           </Text>
-          <View className="bg-white border border-[#e2dfd9] rounded-3xl p-5 shadow-sm space-y-4">
+          <View className="bg-white border border-slate-200 rounded-2xl p-5 shadow-sm space-y-4">
             <View className="flex-row items-center justify-between">
               <View>
                 <Text className="text-[10px] font-bold text-slate-400 uppercase tracking-wider">
@@ -268,7 +268,7 @@ export const VitalsDetailScreen: React.FC<VitalsDetailScreenProps> = ({
             </View>
 
             {/* SVG Trend Chart */}
-            <View className="w-full bg-[#fbfaf7] rounded-2xl p-4 border border-[#e2dfd9]">
+            <View className="w-full bg-slate-50 rounded-2xl p-4 border border-slate-200">
               <View className="flex-row justify-between items-center mb-3">
                 <Text className="text-[10px] font-black text-slate-500 uppercase">Vital Trend</Text>
                 <View className="flex-row bg-[#eff4ff] p-0.5 rounded-full border border-[#dee9fc]">
@@ -342,15 +342,15 @@ export const VitalsDetailScreen: React.FC<VitalsDetailScreenProps> = ({
             {/* Weight, Sleep and Step cards */}
             {isDad && (
               <View className="flex-row gap-3 pt-2">
-                <View className="flex-1 bg-[#fbfaf7] border border-[#e2dfd9] rounded-2xl p-3 items-center">
+                <View className="flex-1 bg-slate-50 border border-slate-200 rounded-2xl p-3 items-center">
                   <Text className="text-[8px] font-black text-slate-400 uppercase">Weight</Text>
                   <Text className="text-sm font-black text-slate-800 mt-0.5">72.4 kg</Text>
                 </View>
-                <View className="flex-1 bg-[#fbfaf7] border border-[#e2dfd9] rounded-2xl p-3 items-center">
+                <View className="flex-1 bg-slate-50 border border-slate-200 rounded-2xl p-3 items-center">
                   <Text className="text-[8px] font-black text-slate-400 uppercase">Sleep</Text>
                   <Text className="text-sm font-black text-slate-800 mt-0.5">6.8 hrs</Text>
                 </View>
-                <View className="flex-1 bg-[#fbfaf7] border border-[#e2dfd9] rounded-2xl p-3 items-center">
+                <View className="flex-1 bg-slate-50 border border-slate-200 rounded-2xl p-3 items-center">
                   <Text className="text-[8px] font-black text-slate-400 uppercase">Steps</Text>
                   <Text className="text-sm font-black text-slate-800 mt-0.5">3,420</Text>
                 </View>
@@ -373,7 +373,7 @@ export const VitalsDetailScreen: React.FC<VitalsDetailScreenProps> = ({
             </View>
           </View>
 
-          <View className="bg-white border border-[#e2dfd9] rounded-3xl p-4.5 shadow-sm space-y-3">
+          <View className="bg-white border border-slate-200 rounded-2xl p-4.5 shadow-sm space-y-3">
             <View className="flex-row flex-wrap gap-2.5">
               {/* Steps Observation */}
               <View testID="fhir-observation-steps" className="flex-1 min-w-[140px] bg-slate-50 border border-slate-100 rounded-2xl p-3">
@@ -694,7 +694,7 @@ export const VitalsDetailScreen: React.FC<VitalsDetailScreenProps> = ({
                     onChangeText={setSystolicInput}
                     placeholder="120"
                     keyboardType="numeric"
-                    className="w-full bg-[#fbfaf7] border border-slate-100 rounded-xl px-4 py-3.5 text-xs text-slate-800"
+                    className="w-full bg-slate-50 border border-slate-200 rounded-xl px-4 py-3.5 text-xs text-slate-800"
                   />
                 </View>
                 <View className="flex-1 space-y-1.5">
@@ -704,7 +704,7 @@ export const VitalsDetailScreen: React.FC<VitalsDetailScreenProps> = ({
                     onChangeText={setDiastolicInput}
                     placeholder="80"
                     keyboardType="numeric"
-                    className="w-full bg-[#fbfaf7] border border-slate-100 rounded-xl px-4 py-3.5 text-xs text-slate-800"
+                    className="w-full bg-slate-50 border border-slate-200 rounded-xl px-4 py-3.5 text-xs text-slate-800"
                   />
                 </View>
               </View>
@@ -718,7 +718,7 @@ export const VitalsDetailScreen: React.FC<VitalsDetailScreenProps> = ({
                   onChangeText={setGlucoseInput}
                   placeholder="95"
                   keyboardType="numeric"
-                  className="w-full bg-[#fbfaf7] border border-slate-100 rounded-xl px-4 py-3.5 text-xs text-slate-800"
+                  className="w-full bg-slate-50 border border-slate-200 rounded-xl px-4 py-3.5 text-xs text-slate-800"
                 />
               </View>
             )}
@@ -731,7 +731,7 @@ export const VitalsDetailScreen: React.FC<VitalsDetailScreenProps> = ({
                 value={noteInput}
                 onChangeText={setNoteInput}
                 placeholder="e.g., Logged after afternoon rest"
-                className="w-full bg-[#fbfaf7] border border-slate-100 rounded-xl px-4 py-3.5 text-xs text-slate-800"
+                className="w-full bg-slate-50 border border-slate-200 rounded-xl px-4 py-3.5 text-xs text-slate-800"
               />
             </View>
 
@@ -749,7 +749,7 @@ export const VitalsDetailScreen: React.FC<VitalsDetailScreenProps> = ({
         </View>
 
         {/* Readings History Log Table */}
-        <View className="bg-white border border-[#e2dfd9] rounded-3xl p-5 shadow-sm space-y-3.5 mb-12">
+        <View className="bg-white border border-slate-200 rounded-2xl p-5 shadow-sm space-y-3.5 mb-12">
           <Text className="text-sm font-black text-slate-900 border-b border-slate-100 pb-3">
             Readings Log History
           </Text>

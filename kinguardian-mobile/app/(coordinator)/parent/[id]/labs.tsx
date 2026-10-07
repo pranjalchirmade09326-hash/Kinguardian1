@@ -147,7 +147,7 @@ export default function ParentLabsRoute() {
           </View>
         </View>
 
-        <ScrollView className="flex-1 px-5 pt-4 space-y-4" showsVerticalScrollIndicator={false}>
+        <ScrollView className="flex-1 px-5 pt-4 space-y-4" contentContainerStyle={{ paddingBottom: 60 }} showsVerticalScrollIndicator={false}>
           {/* FHIR DiagnosticReport Banner */}
           {fhirLabs?.verified_from_fhir && (
             <View className="bg-indigo-50 border border-indigo-200 rounded-2xl p-3 flex-row items-center justify-between">

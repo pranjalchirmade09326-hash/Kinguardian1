@@ -41,8 +41,9 @@
     "extra": {
       "router": {},
       "eas": {
-        "projectId": "a58f2dee-b7d9-4519-973e-c1f52558e971"
+        "projectId": "e7b4b111-6134-4c35-adc2-1aa076551d9e"
       }
-    }
+    },
+    "owner": "abhi-29"
   }
 }

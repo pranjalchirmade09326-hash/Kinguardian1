@@ -161,6 +161,7 @@ export default function ParentMedicationsRoute() {
         <ScrollView
           testID="coordinator-medications-list"
           className="flex-1 px-5 pt-4 space-y-4"
+          contentContainerStyle={{ paddingBottom: 60 }}
           showsVerticalScrollIndicator={false}
         >
           {/* Adherence Score Card */}

@@ -147,9 +147,9 @@ export default function DoctorSummaryRoute() {
 
   return (
     <DeviceFrame>
-      <View testID="parent-summary-screen" className="flex-1 relative bg-[#fbfaf7]">
+      <View testID="parent-summary-screen" className="flex-1 relative bg-slate-50">
         {/* Header */}
-        <View className="px-6 py-5 border-b border-[#e2dfd9] bg-[#fbfaf7] flex-row items-center gap-3">
+        <View className="px-6 py-5 border-b border-slate-200 bg-white flex-row items-center gap-3">
           <TouchableOpacity
             onPress={() => router.back()}
             className="p-1 hover:bg-slate-100 rounded-full"
@@ -157,16 +157,16 @@ export default function DoctorSummaryRoute() {
             <ArrowLeft size={20} color="#121c2a" />
           </TouchableOpacity>
           <View>
-            <Text className="text-lg font-black text-[#121c2a]">Health Summary</Text>
+            <Text className="text-lg font-black text-slate-900">Health Summary</Text>
             <Text className="text-[10px] text-slate-400 font-bold uppercase tracking-wider">
               Shareable Health & Clinical Handout
             </Text>
           </View>
         </View>
 
-        <ScrollView className="flex-1 px-6 pt-5 space-y-6">
+        <ScrollView className="flex-1 px-6 pt-5 space-y-6" contentContainerStyle={{ paddingBottom: 60 }} showsVerticalScrollIndicator={false}>
           {/* Outage Simulation Quick Toggle (TEST WEAR-008 Live Control) */}
-          <View className="bg-white border border-[#e2dfd9] rounded-2xl p-4 shadow-sm space-y-2.5">
+          <View className="bg-white border border-slate-200 rounded-2xl p-4 shadow-sm space-y-2.5">
             <View className="flex-row items-center justify-between">
               <View className="flex-row items-center gap-2">
                 <View
@@ -226,7 +226,7 @@ export default function DoctorSummaryRoute() {
           </View>
 
           {/* Card Summary Ingest */}
-          <View className="bg-white border border-[#e2dfd9] rounded-[32px] p-6 shadow-sm space-y-5">
+          <View className="bg-white border border-slate-200 rounded-2xl p-6 shadow-sm space-y-5">
             {/* Patient Demographic */}
             <View className="space-y-1">
               <Text className="text-[9px] font-black text-slate-400 uppercase tracking-widest">
@@ -391,7 +391,7 @@ export default function DoctorSummaryRoute() {
           </View>
 
           {/* Core Platform Systems Status (TEST WEAR-008 Verification) */}
-          <View className="bg-white border border-[#e2dfd9] rounded-[32px] p-6 shadow-sm space-y-4">
+          <View className="bg-white border border-slate-200 rounded-2xl p-6 shadow-sm space-y-4">
             <View className="flex-row items-center justify-between pb-3 border-b border-slate-100">
               <View className="flex-row items-center gap-2">
                 <ShieldCheck size={18} color="#059669" />
@@ -523,7 +523,7 @@ export default function DoctorSummaryRoute() {
               testID="parent-summary-share"
               onPress={handleShareWithDoctor}
               disabled={sharing}
-              className="w-full bg-[#2a14b4] py-4.5 rounded-2xl flex-row items-center justify-center gap-2 active:scale-98 shadow-md"
+              className="w-full bg-[#2563eb] py-4.5 rounded-2xl flex-row items-center justify-center gap-2 active:scale-98 shadow-md"
             >
               {sharing ? (
                 <ActivityIndicator size="small" color="#ffffff" />

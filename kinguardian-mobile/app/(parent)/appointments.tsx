@@ -79,14 +79,14 @@ export default function AppointmentsRoute() {
 
   return (
     <DeviceFrame>
-      <View className="flex-1 relative bg-[#f2f2f7]">
+      <View className="flex-1 relative bg-slate-50">
         {/* Header */}
-        <View className="bg-white pt-6 pb-5 px-6 border-b border-neutral-100 flex-row justify-between items-center">
+        <View className="bg-white pt-4 pb-3.5 px-5 border-b border-slate-100 flex-row justify-between items-center">
           <View>
-            <Text className="text-2xl font-bold text-neutral-900 tracking-tight">
+            <Text className="text-xl font-bold text-slate-900 tracking-tight">
               My Appointments
             </Text>
-            <Text className="text-[10px] font-bold text-neutral-400 uppercase tracking-wider mt-0.5">
+            <Text className="text-[10px] font-bold text-slate-400 uppercase tracking-wider mt-0.5">
               {context.currentUser?.name ? `${context.currentUser.name}'s Clinic Schedule` : "Clinic Schedule"}
             </Text>
           </View>
@@ -95,7 +95,7 @@ export default function AppointmentsRoute() {
             onPress={() => setModalOpen(true)}
             testID="parent-appointments-add"
             accessibilityLabel="Add appointment"
-            className="flex-row items-center gap-1.5 bg-[#007aff] px-3.5 py-2 rounded-xl shadow-xs"
+            className="flex-row items-center gap-1.5 bg-blue-600 px-3.5 py-2 rounded-xl shadow-xs"
           >
             <Plus size={14} color="#ffffff" strokeWidth={2.5} />
             <Text className="text-white text-xs font-bold">Add</Text>
@@ -103,7 +103,8 @@ export default function AppointmentsRoute() {
         </View>
 
         <ScrollView
-          className="flex-1 p-5 space-y-4"
+          className="flex-1 p-4 space-y-4"
+          contentContainerStyle={{ paddingBottom: 110 }}
           refreshControl={
             <RefreshControl refreshing={refreshing} onRefresh={onRefresh} />
           }

@@ -33,9 +33,9 @@ export default function CaregiverProfileRoute() {
 
   return (
     <DeviceFrame>
-      <View className="flex-1 relative bg-[#fbfaf7]">
+      <View className="flex-1 relative bg-slate-50">
         {/* Header */}
-        <View className="px-6 py-5 border-b border-[#e2dfd9] bg-[#fbfaf7] flex-row items-center gap-3">
+        <View className="px-6 py-5 border-b border-slate-200 bg-white flex-row items-center gap-3">
           <TouchableOpacity
             onPress={() => router.back()}
             className="p-1 hover:bg-slate-100 rounded-full"
@@ -43,16 +43,16 @@ export default function CaregiverProfileRoute() {
             <ArrowLeft size={20} color="#121c2a" />
           </TouchableOpacity>
           <View>
-            <Text className="text-lg font-black text-[#121c2a]">Caregiver Profile</Text>
+            <Text className="text-lg font-black text-slate-900">Caregiver Profile</Text>
             <Text className="text-[10px] text-slate-400 font-bold uppercase tracking-wider">
               Care Circle Network
             </Text>
           </View>
         </View>
 
-        <ScrollView className="flex-1 px-6 pt-6 space-y-6">
+        <ScrollView className="flex-1 px-6 pt-6 space-y-6" contentContainerStyle={{ paddingBottom: 60 }} showsVerticalScrollIndicator={false}>
           {/* Caregiver Identity Card */}
-          <View className="bg-white border border-[#e2dfd9] rounded-[32px] p-6 shadow-sm items-center space-y-4">
+          <View className="bg-white border border-slate-200 rounded-2xl p-6 shadow-sm items-center space-y-4">
             <Image
             source={{ uri: member?.avatarUrl || '' }}
               className="w-24 h-24 rounded-full border-4 border-[#dee9fc] shadow-xs"
@@ -75,7 +75,7 @@ export default function CaregiverProfileRoute() {
             <Text className="text-xs font-black uppercase text-slate-400 tracking-wider">
               Core Responsibilities
             </Text>
-            <View className="bg-white border border-[#e2dfd9] rounded-3xl p-5 shadow-sm space-y-4.5">
+            <View className="bg-white border border-slate-200 rounded-2xl p-5 shadow-sm space-y-4.5">
               {responsibilities.map((resp, index) => (
                 <View key={index} className="flex-row items-start gap-3">
                   <View className="pt-0.5">
@@ -94,7 +94,7 @@ export default function CaregiverProfileRoute() {
             <View className="flex-row gap-3">
               <TouchableOpacity
                 onPress={() => context.showToast(`No phone number is available for ${memberName}.`)}
-                className="flex-1 bg-[#2a14b4] py-4 rounded-2xl flex-row items-center justify-center gap-2 active:scale-98 shadow-md"
+                className="flex-1 bg-[#2563eb] py-4 rounded-2xl flex-row items-center justify-center gap-2 active:scale-98 shadow-md"
               >
                 <Phone size={16} color="#ffffff" />
                 <Text className="text-white font-black text-xs uppercase tracking-wider">Call</Text>

@@ -175,18 +175,18 @@ export default function CoordinatorProfileRoute() {
 
   return (
     <DeviceFrame>
-      <View className="flex-1 relative bg-[#f2f2f7]">
+      <View className="flex-1 relative bg-slate-50">
         {/* Header */}
-        <View className="px-6 py-5 border-b border-neutral-100 bg-white">
-          <Text className="text-[10px] font-bold text-neutral-400 uppercase tracking-wider">
+        <View className="px-5 py-3.5 border-b border-slate-100 bg-white">
+          <Text className="text-[10px] font-bold text-slate-400 uppercase tracking-wider">
             Configuration
           </Text>
-          <Text className="text-2xl font-bold text-neutral-900 tracking-tight mt-0.5">
+          <Text className="text-xl font-bold text-slate-900 tracking-tight mt-0.5">
             Settings
           </Text>
         </View>
 
-        <ScrollView className="flex-1 px-5 pt-4 space-y-4">
+        <ScrollView className="flex-1 px-5 pt-4 space-y-4" contentContainerStyle={{ paddingBottom: 110 }}>
           {/* User Profile Card */}
           <View
             testID="coordinator-profile-session-card"

@@ -30,7 +30,7 @@ export default function ParentInsightsRoute() {
 
   return (
     <DeviceFrame>
-      <View testID="insights-screen" className="flex-1 relative bg-[#fbfaf7]">
+      <View testID="insights-screen" className="flex-1 relative bg-slate-50">
         <TransparencyInsightScreen
           observation={observation}
           personName={personName}

@@ -207,6 +207,7 @@ export default function FamilyCoordinationRoute() {
 
         <ScrollView
           className="flex-1 px-5 pt-4 space-y-5"
+          contentContainerStyle={{ paddingBottom: 110 }}
           refreshControl={
             <RefreshControl refreshing={refreshing} onRefresh={() => { setRefreshing(true); loadFamilyData(); }} />
           }

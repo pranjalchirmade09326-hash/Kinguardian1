@@ -21,14 +21,13 @@ interface DeviceFrameProps {
 export const DeviceFrame: React.FC<DeviceFrameProps> = ({ children }) => {
   const context = useContext(AppContext);
   const [switcherOpen, setSwitcherOpen] = useState(false);
-  const [simControlsExpanded, setSimControlsExpanded] = useState(false);
 
   if (!context) return <View className="flex-1 bg-white">{children}</View>;
 
-  const { currentUser, demoUsers, switchDemoUser, appMode } = context;
+  const { currentUser, demoUsers, switchDemoUser } = context;
 
-  // Set safe area background dynamically to match the color themes
-  const bgStyle = appMode === 'parent' ? 'bg-[#fffbeb]' : 'bg-[#fdfbf7]';
+  // Professional clean healthcare background
+  const bgStyle = 'bg-slate-50';
 
   const childrenArray = children as any;
   const mainApp = Array.isArray(childrenArray) ? childrenArray[0] : children;
@@ -44,7 +43,7 @@ export const DeviceFrame: React.FC<DeviceFrameProps> = ({ children }) => {
           <SafeAreaView className={`w-full h-full ${bgStyle}`}>
             <StatusBar
               barStyle="dark-content"
-              backgroundColor={appMode === 'parent' ? '#fffbeb' : '#fdfbf7'}
+              backgroundColor="#ffffff"
             />
             <KeyboardAvoidingView behavior="padding" className="flex-1 relative">
               <View className={`flex-1 ${bgStyle}`}>{mainApp}</View>
@@ -147,47 +146,18 @@ export const DeviceFrame: React.FC<DeviceFrameProps> = ({ children }) => {
     );
   }
 
-  // Native Mobile Layout
+  // Native Mobile Layout - Clean, professional mobile presentation
   return (
-    <SafeAreaView className={`flex-1 ${bgStyle}`}>
+    <SafeAreaView className={`flex-1 ${bgStyle}`} edges={['top', 'left', 'right']}>
       <StatusBar
         barStyle="dark-content"
-        backgroundColor={appMode === 'parent' ? '#fffbeb' : '#fdfbf7'}
+        backgroundColor="#ffffff"
       />
       <KeyboardAvoidingView
         behavior={Platform.OS === 'ios' ? 'padding' : undefined}
         className="flex-1 relative"
       >
         <View className={`flex-1 ${bgStyle}`}>{mainApp}</View>
-
-        {/* Collapsible Mobile Simulator Controls Panel */}
-        {simControls && (
-          <View className="bg-slate-900 border-t border-slate-800 shrink-0">
-            <TouchableOpacity
-              onPress={() => setSimControlsExpanded(!simControlsExpanded)}
-              activeOpacity={0.8}
-              className="py-3 px-4 flex-row justify-between items-center bg-slate-950 border-b border-slate-850"
-            >
-              <Text className="text-[10px] font-black text-slate-300 uppercase tracking-wide">
-                🛠️ Simulator Controls {simControlsExpanded ? '▲' : '▼'}
-              </Text>
-            </TouchableOpacity>
-            {simControlsExpanded && (
-              <View className="max-h-[280px]">
-                <ScrollView className="flex-1">{simControls}</ScrollView>
-              </View>
-            )}
-          </View>
-        )}
-
-        {/* Hidden Developer Switcher Trigger - Small Wrench button absolute positioned top right */}
-        <TouchableOpacity
-          onPress={() => setSwitcherOpen(true)}
-          activeOpacity={0.7}
-          className="absolute top-2.5 right-4 z-50 w-7 h-7 rounded-full bg-slate-800/80 items-center justify-center shadow"
-        >
-          <Wrench size={12} color="#ffffff" />
-        </TouchableOpacity>
 
         {/* Switcher Modal */}
         <Modal

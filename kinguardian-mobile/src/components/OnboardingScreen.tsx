@@ -1,5 +1,6 @@
 import React, { useState, useContext } from 'react';
 import { View, Text, TouchableOpacity, ScrollView, TextInput } from 'react-native';
+import { SafeAreaView } from 'react-native-safe-area-context';
 import { AppContext } from '../store/AppContext';
 import {
   ShieldCheck,
@@ -95,7 +96,8 @@ export const OnboardingScreen: React.FC<OnboardingScreenProps> = ({ initialStep 
   };
 
   return (
-    <ScrollView testID="onboarding-screen" className="flex-1 bg-[#f2f2f7] px-4 py-8">
+    <SafeAreaView className="flex-1 bg-slate-50" edges={['top', 'bottom', 'left', 'right']}>
+      <ScrollView testID="onboarding-screen" className="flex-1 bg-slate-50 px-4 py-4" contentContainerStyle={{ paddingBottom: 40 }}>
       <View className="items-center justify-center py-4 space-y-5">
         {/* Step Indicator Dots */}
         <View testID="onboarding-step-dots" className="flex-row justify-center gap-1.5 mb-2">
@@ -396,7 +398,8 @@ export const OnboardingScreen: React.FC<OnboardingScreenProps> = ({ initialStep 
           </View>
         </View>
       </View>
-      <View className="h-10" />
+      <View className="h-6" />
     </ScrollView>
+    </SafeAreaView>
   );
 };

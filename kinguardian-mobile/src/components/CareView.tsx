@@ -403,6 +403,7 @@ export const CareView: React.FC<CareViewProps> = ({
 
         <ScrollView
           className="flex-1 p-5 space-y-4"
+          contentContainerStyle={{ paddingBottom: 110 }}
           testID={isCaregiverView ? 'care-assigned-list' : 'care-task-list'}
         >
           {/* Scheduler / Overdue Evaluation Bar (TEST CARE-004) */}
@@ -1051,7 +1052,7 @@ export const CareView: React.FC<CareViewProps> = ({
 
   // Medications plan segment
   return (
-    <ScrollView className="flex-1 bg-[#f2f2f7]">
+    <ScrollView className="flex-1 bg-slate-50" contentContainerStyle={{ paddingBottom: 110 }}>
       {/* Header */}
       <View className="bg-white border-b border-neutral-100 pt-5 pb-3 px-6 space-y-3 shadow-xs">
         <View className="flex-row items-center justify-between">

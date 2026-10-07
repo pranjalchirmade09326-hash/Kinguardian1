@@ -294,9 +294,9 @@ export default function AppointmentPrepareRoute() {
 
   return (
     <DeviceFrame>
-      <View className="flex-1 relative bg-[#fbfaf7]">
+      <View className="flex-1 relative bg-slate-50">
         {/* Header */}
-        <View className="px-6 py-5 border-b border-[#e2dfd9] bg-[#fbfaf7] flex-row items-center justify-between">
+        <View className="px-6 py-5 border-b border-slate-200 bg-white flex-row items-center justify-between">
           <View className="flex-row items-center gap-3">
             <TouchableOpacity
               onPress={() => router.back()}
@@ -305,7 +305,7 @@ export default function AppointmentPrepareRoute() {
               <ArrowLeft size={20} color="#121c2a" />
             </TouchableOpacity>
             <View>
-              <Text className="text-lg font-black text-[#121c2a]">Prepare for {personName}'s appointment</Text>
+              <Text className="text-lg font-black text-slate-900">Prepare for {personName}'s appointment</Text>
               <Text className="text-[10px] text-slate-400 font-bold uppercase tracking-wider">
                 {data.appointment.specialty} Consultation Prep • {data.appointment.time}
               </Text>
@@ -318,14 +318,14 @@ export default function AppointmentPrepareRoute() {
             className="p-2 bg-indigo-50 rounded-full border border-indigo-100 active:scale-95"
           >
             {generatingAI || loading ? (
-              <ActivityIndicator size="small" color="#2a14b4" />
+              <ActivityIndicator size="small" color="#2563eb" />
             ) : (
-              <RefreshCw size={16} color="#2a14b4" />
+              <RefreshCw size={16} color="#2563eb" />
             )}
           </TouchableOpacity>
         </View>
 
-        <ScrollView className="flex-1 px-6 pt-4 space-y-5">
+        <ScrollView className="flex-1 px-6 pt-4 space-y-5" contentContainerStyle={{ paddingBottom: 60 }} showsVerticalScrollIndicator={false}>
           {/* EHR Outage Simulator Control Pill */}
           <View className="flex-row items-center justify-between px-1">
             <Text className="text-[10px] font-black text-slate-400 uppercase tracking-widest">
@@ -377,7 +377,7 @@ export default function AppointmentPrepareRoute() {
           )}
 
           {/* Appointment Meta Banner */}
-          <View className="bg-white border border-[#e2dfd9] rounded-2xl p-4 shadow-xs flex-row items-center justify-between">
+          <View className="bg-white border border-slate-200 rounded-2xl p-4 shadow-xs flex-row items-center justify-between">
             <View className="flex-row items-center gap-3">
               <View className="w-10 h-10 rounded-xl bg-indigo-50 items-center justify-center">
                 <Calendar size={18} color="#2a14b4" />
@@ -466,7 +466,7 @@ export default function AppointmentPrepareRoute() {
               <Text className="text-[10px] font-bold text-slate-500">7-Day Rolling Window</Text>
             </View>
 
-            <View className="bg-white border border-[#e2dfd9] rounded-3xl p-5 shadow-sm space-y-4">
+            <View className="bg-white border border-slate-200 rounded-2xl p-5 shadow-sm space-y-4">
               {/* BP Average */}
               <View className="flex-row items-center justify-between border-b border-slate-50 pb-3">
                 <View className="flex-row items-center gap-3">
@@ -541,7 +541,7 @@ export default function AppointmentPrepareRoute() {
               {data.current_medications.map((med, idx) => (
                 <View
                   key={idx}
-                  className="bg-white border border-[#e2dfd9] rounded-2xl p-4 shadow-xs flex-row items-center justify-between"
+                  className="bg-white border border-slate-200 rounded-2xl p-4 shadow-xs flex-row items-center justify-between"
                 >
                   <View className="flex-row items-center gap-3">
                     <View className="w-8 h-8 rounded-full bg-indigo-50 items-center justify-center">
@@ -587,7 +587,7 @@ export default function AppointmentPrepareRoute() {
                     onPress={() => toggleQuestion(idx)}
                     activeOpacity={0.8}
                     className={`bg-white border ${
-                      isChecked ? 'border-indigo-400 bg-indigo-50/20' : 'border-[#e2dfd9]'
+                      isChecked ? 'border-indigo-400 bg-indigo-50/20' : 'border-slate-200'
                     } rounded-2xl p-4 shadow-xs flex-row items-start gap-3`}
                   >
                     <View className="mt-0.5">

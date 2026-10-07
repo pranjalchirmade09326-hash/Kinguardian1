@@ -17,7 +17,7 @@ export default function ParentVitalsRoute() {
 
   return (
     <DeviceFrame>
-      <View testID="vitals-screen" className="flex-1 relative bg-[#fbfaf7]">
+      <View testID="vitals-screen" className="flex-1 relative bg-slate-50">
         <VitalsDetailScreen
           personId={personId}
           onBack={() => router.back()}

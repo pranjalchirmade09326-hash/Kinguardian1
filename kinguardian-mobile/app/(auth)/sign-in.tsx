@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import { View, Text, TextInput, TouchableOpacity, Alert, ScrollView, KeyboardAvoidingView, Platform, ActivityIndicator } from 'react-native';
+import { SafeAreaView } from 'react-native-safe-area-context';
 import { useRouter } from 'expo-router';
 import { LogIn, UserPlus, Shield, ChevronRight, Mail, Lock, User, AlertCircle } from 'lucide-react-native';
 import { authService } from '../../src/services/auth/authService';
@@ -87,45 +88,46 @@ export default function SignInRoute() {
   };
 
   return (
-    <KeyboardAvoidingView 
-      behavior={Platform.OS === 'ios' ? 'padding' : 'height'}
-      className="flex-1 bg-gradient-to-b from-blue-50 via-white to-blue-50"
-    >
-      <ScrollView 
-        contentContainerStyle={{ flexGrow: 1 }}
-        keyboardShouldPersistTaps="handled"
-        className="px-6 py-8"
+    <SafeAreaView className="flex-1 bg-white" edges={['top', 'bottom', 'left', 'right']}>
+      <KeyboardAvoidingView 
+        behavior={Platform.OS === 'ios' ? 'padding' : 'height'}
+        className="flex-1 bg-white"
       >
-        {/* Header / Logo Section */}
-        <View className="items-center mt-8 mb-8">
-          <View className="w-16 h-16 rounded-full bg-[#eff6ff] items-center justify-center shadow-xs border border-blue-100 mb-2">
-            <Text className="text-3xl">🛡️</Text>
+        <ScrollView 
+          contentContainerStyle={{ flexGrow: 1, paddingBottom: 24 }}
+          keyboardShouldPersistTaps="handled"
+          className="px-6"
+        >
+          {/* Header / Logo Section */}
+          <View className="items-center mt-4 mb-6">
+            <View className="w-14 h-14 rounded-2xl bg-blue-50 items-center justify-center border border-blue-100 mb-2 shadow-xs">
+              <Text className="text-2xl">🛡️</Text>
+            </View>
+            <Text className="text-2xl font-bold text-slate-900 tracking-tight">
+              KinGuardian
+            </Text>
+            <Text className="text-xs text-slate-500 text-center mt-1 leading-relaxed max-w-xs">
+              {isRegistering
+                ? 'Join your family healthcare coordination circle'
+                : 'Welcome back to your family care dashboard'}
+            </Text>
           </View>
-          <Text className="text-3xl font-bold text-neutral-900 mt-2 tracking-tight">
-            KinGuardian
-          </Text>
-          <Text className="text-sm text-neutral-500 text-center mt-2 leading-relaxed">
-            {isRegistering
-              ? 'Join your family healthcare coordination circle'
-              : 'Welcome back to your family care dashboard'}
-          </Text>
-        </View>
 
-        {/* Auth Card */}
-        <View className="bg-white rounded-3xl p-6 shadow-xl shadow-blue-100/50 border border-blue-50">
-          <View className="flex-row items-center mb-6">
-            <View className="w-10 h-10 rounded-xl bg-blue-50 items-center justify-center mr-3">
-              {isRegistering ? <UserPlus size={20} color="#007aff" /> : <LogIn size={20} color="#007aff" />}
+          {/* Auth Card */}
+          <View className="bg-white rounded-2xl p-5 shadow-sm border border-slate-200">
+            <View className="flex-row items-center mb-5">
+              <View className="w-10 h-10 rounded-xl bg-blue-50 items-center justify-center mr-3 border border-blue-100">
+                {isRegistering ? <UserPlus size={18} color="#2563eb" /> : <LogIn size={18} color="#2563eb" />}
+              </View>
+              <View>
+                <Text className="text-lg font-bold text-slate-900">
+                  {isRegistering ? 'Create Account' : 'Sign In'}
+                </Text>
+                <Text className="text-xs text-slate-400">
+                  {isRegistering ? 'Join the KinGuardian family' : 'Access your dashboard'}
+                </Text>
+              </View>
             </View>
-            <View>
-              <Text className="text-xl font-bold text-neutral-900">
-                {isRegistering ? 'Create Account' : 'Sign In'}
-              </Text>
-              <Text className="text-xs text-neutral-400">
-                {isRegistering ? 'Join the KinGuardian family' : 'Access your dashboard'}
-              </Text>
-            </View>
-          </View>
 
           {/* Visual Error Message Banner */}
           {errorMessage && (
@@ -307,5 +309,6 @@ export default function SignInRoute() {
         </View>
       </ScrollView>
     </KeyboardAvoidingView>
+    </SafeAreaView>
   );
 }

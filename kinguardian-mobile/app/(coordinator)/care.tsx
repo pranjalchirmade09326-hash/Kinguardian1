@@ -15,7 +15,7 @@ export default function CoordinatorCareRoute() {
 
   return (
     <DeviceFrame>
-      <View className="flex-1 relative bg-[#f8f9ff]">
+      <View className="flex-1 relative bg-slate-50">
         <CareView
           records={context.records}
           onOpenQuickActions={() => context.setQuickActionsOpen(true)}

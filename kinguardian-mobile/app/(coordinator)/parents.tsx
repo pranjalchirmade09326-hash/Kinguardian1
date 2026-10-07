@@ -45,27 +45,27 @@ export default function CoordinatorParentsRoute() {
 
   return (
     <DeviceFrame>
-      <View className="flex-1 relative bg-[#f2f2f7]">
+      <View className="flex-1 relative bg-slate-50">
         {/* Header */}
-        <View className="px-6 py-6 border-b border-neutral-100 bg-white flex-row items-center justify-between">
+        <View className="px-5 py-3.5 border-b border-slate-100 bg-white flex-row items-center justify-between">
           <View>
-            <Text className="text-[10px] font-bold text-neutral-400 uppercase tracking-wider">
+            <Text className="text-[10px] font-bold text-slate-400 uppercase tracking-wider">
               Connected Profiles
             </Text>
-            <Text className="text-2xl font-bold text-neutral-900 tracking-tight mt-0.5">Parents</Text>
+            <Text className="text-xl font-bold text-slate-900 tracking-tight mt-0.5">Parents</Text>
           </View>
 
           <TouchableOpacity
             onPress={() => setAddModalOpen(true)}
             activeOpacity={0.8}
-            className="flex-row items-center gap-1.5 bg-gradient-to-r from-[#007aff] to-[#0055ff] px-4 py-2.5 rounded-xl shadow-lg shadow-blue-500/30"
+            className="flex-row items-center gap-1.5 bg-blue-600 px-3.5 py-2 rounded-xl shadow-xs"
           >
             <Plus size={15} color="#ffffff" strokeWidth={2.5} />
             <Text className="text-white text-xs font-bold">Add Parent</Text>
           </TouchableOpacity>
         </View>
 
-        <ScrollView className="flex-1 px-5 pt-4 space-y-4">
+        <ScrollView className="flex-1 px-5 pt-4 space-y-4" contentContainerStyle={{ paddingBottom: 110 }}>
           {context.people.map((p) => {
             const isActive = context.currentPersonId === p.id || context.currentPersonId === p.backendSubjectId;
             const isDad = p.id === 'dad' || p.relation?.toLowerCase() === 'father' || p.relationship?.toLowerCase() === 'father';

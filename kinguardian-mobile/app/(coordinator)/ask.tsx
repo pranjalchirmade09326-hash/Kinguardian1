@@ -220,7 +220,7 @@ export default function CoordinatorAskRoute() {
           </View>
         </View>
 
-        <ScrollView className="flex-1 px-4 pt-3 space-y-4">
+        <ScrollView className="flex-1 px-4 pt-3 space-y-4" contentContainerStyle={{ paddingBottom: 110 }}>
           {/* Clinical Assistant Status Banner */}
           <View className="bg-gradient-to-r from-purple-900 to-indigo-950 rounded-2xl p-4 shadow-sm">
             <View className="flex-row items-center justify-between">
@@ -385,7 +385,7 @@ export default function CoordinatorAskRoute() {
                                     ? 'coordinator-ask-citation-medication'
                                     : `coordinator-ask-source-${sIdx}`
                                 }
-                                className="bg-slate-50 p-2 rounded-lg border border-slate-150"
+                                className="bg-slate-50 p-2 rounded-lg border border-slate-200"
                               >
                                 <Text className="text-[11px] font-bold text-purple-950">{src.title}</Text>
                                 <Text className="text-[10px] text-slate-600 mt-0.5">{src.detail}</Text>

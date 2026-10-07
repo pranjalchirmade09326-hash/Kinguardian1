@@ -73,7 +73,7 @@ export const BottomTabBar: React.FC<{
   onTabChange: (key: string) => void;
 }> = ({ activeTab, tabs, onTabChange }) => (
   <View
-    className="flex-row bg-white border-t border-slate-150 py-3 px-4 justify-around items-center"
+    className="flex-row bg-white border-t border-slate-200 py-3 px-4 justify-around items-center"
     accessibilityRole="tablist"
     accessibilityLabel="Navigation bar"
   >
@@ -121,10 +121,10 @@ export const FamilyMemberCard: React.FC<{
     <TouchableOpacity
       onPress={onPress}
       disabled={!onPress}
-      className={`bg-white border border-[#e2dfd9] shadow-sm active:scale-99 ${
+      className={`bg-white border border-slate-200 shadow-sm active:scale-99 ${
         isCompact
           ? 'rounded-2xl p-3 flex-row items-center gap-2.5'
-          : 'rounded-3xl p-4 flex-row items-center gap-3.5'
+          : 'rounded-2xl p-4 flex-row items-center gap-3.5'
       }`}
       accessibilityRole="button"
       accessibilityLabel={`Family member: ${name}, ${relation}${isCompact ? '' : ` located in ${location}`}`}
@@ -262,16 +262,16 @@ export const MedicationCard: React.FC<{
   if (variant === 'coordinator') {
     return (
       <View
-        className={`border border-[#e2dfd9] bg-white rounded-3xl p-5 shadow-xs space-y-3`}
+        className={`border border-slate-200 bg-white rounded-2xl p-5 shadow-xs space-y-3`}
         accessibilityLabel={`Medication coordinator view: ${name}, dosage: ${dosage}, time: ${time}, status: ${status}`}
       >
         <View className="flex-row justify-between items-center">
           <Text className="text-xs font-black text-slate-500 uppercase tracking-widest">
             {time}
           </Text>
-          <View className={`px-2 py-0.5 rounded-full ${isTaken ? 'bg-[#d2f4ef]' : 'bg-slate-100'}`}>
+          <View className={`px-2 py-0.5 rounded-full ${isTaken ? 'bg-emerald-50' : 'bg-slate-100'}`}>
             <Text
-              className={`text-[8px] font-black uppercase ${isTaken ? 'text-[#006a61]' : 'text-slate-550'}`}
+              className={`text-[8px] font-black uppercase ${isTaken ? 'text-emerald-700' : 'text-slate-500'}`}
             >
               {isTaken ? '✓ Taken' : status}
             </Text>
@@ -320,7 +320,7 @@ export const MedicationCard: React.FC<{
           <Text className="text-xs font-bold text-slate-400">
             {dosage} · {instructions}
           </Text>
-          <Text className="text-[10px] text-slate-450 font-bold mt-1">
+          <Text className="text-[10px] text-slate-400 font-bold mt-1">
             Prescribed by: {prescribedBy}
           </Text>
         </View>
@@ -392,12 +392,12 @@ export const AppointmentCard: React.FC<{
 }> = ({ specialty, doctor, hospital, date, time, onPress }) => (
   <TouchableOpacity
     onPress={onPress}
-    className="bg-white border border-[#e2dfd9] rounded-3xl p-5 shadow-sm space-y-4 active:scale-99"
+    className="bg-white border border-slate-200 rounded-2xl p-5 shadow-sm space-y-4 active:scale-99"
     accessibilityRole="button"
     accessibilityLabel={`Appointment: ${specialty} with ${doctor} at ${hospital} scheduled for ${date} at ${time}`}
   >
     <View className="space-y-0.5">
-      <Text className="text-[9px] font-black text-slate-450 uppercase tracking-widest">
+      <Text className="text-[9px] font-black text-slate-400 uppercase tracking-widest">
         Appointment
       </Text>
       <Text className="text-base font-black text-slate-800">{specialty}</Text>
@@ -405,16 +405,16 @@ export const AppointmentCard: React.FC<{
     </View>
     <View className="space-y-2 border-t border-slate-100 pt-3">
       <View className="flex-row items-center gap-2">
-        <Calendar size={12} color="#ba1a1a" />
-        <Text className="text-xs text-slate-650 font-bold">{date}</Text>
+        <Calendar size={12} color="#dc2626" />
+        <Text className="text-xs text-slate-600 font-bold">{date}</Text>
       </View>
       <View className="flex-row items-center gap-2">
-        <Clock size={12} color="#2a14b4" />
-        <Text className="text-xs text-slate-650 font-bold">{time}</Text>
+        <Clock size={12} color="#2563eb" />
+        <Text className="text-xs text-slate-600 font-bold">{time}</Text>
       </View>
       <View className="flex-row items-center gap-2">
         <MapPin size={12} color="#3b82f6" />
-        <Text className="text-xs text-slate-650 font-semibold">{hospital}</Text>
+        <Text className="text-xs text-slate-600 font-semibold">{hospital}</Text>
       </View>
     </View>
   </TouchableOpacity>
@@ -432,7 +432,7 @@ export const CareTaskCard: React.FC<{
   onReassign?: () => void;
 }> = ({ title, assignee, time, status, onComplete, onReassign }) => (
   <View
-    className="bg-white border border-[#e2dfd9] rounded-3xl p-5 shadow-sm space-y-4"
+    className="bg-white border border-slate-200 rounded-2xl p-5 shadow-sm space-y-4"
     accessibilityLabel={`Care task: ${title}, assigned to ${assignee}, time ${time}, status: ${status}`}
   >
     <View className="flex-row justify-between items-start">
@@ -462,7 +462,7 @@ export const CareTaskCard: React.FC<{
           accessibilityRole="button"
           accessibilityLabel="Reassign task"
         >
-          <Text className="text-[9px] font-black text-slate-650 uppercase">Reassign</Text>
+          <Text className="text-[9px] font-black text-slate-600 uppercase">Reassign</Text>
         </TouchableOpacity>
       )}
     </View>
@@ -516,7 +516,7 @@ export const AIInsightCard: React.FC<{
   if (variant === 'summary') {
     return (
       <View
-        className="bg-white border border-[#e2dfd9] rounded-2xl p-4 flex-row items-center gap-3 shadow-xs"
+        className="bg-white border border-slate-200 rounded-2xl p-4 flex-row items-center gap-3 shadow-xs"
         accessibilityLabel={`AI Summary: ${title}. ${statement}`}
       >
         <View className="w-8 h-8 rounded-full bg-indigo-50 items-center justify-center shrink-0">
@@ -552,7 +552,7 @@ export const AIInsightCard: React.FC<{
             <Text className="text-[9px] font-black text-amber-800 uppercase">{statusLabel}</Text>
           </View>
         </View>
-        <Text className="text-xs text-slate-650 font-bold leading-relaxed">{statement}</Text>
+        <Text className="text-xs text-slate-600 font-bold leading-relaxed">{statement}</Text>
         <Text className="text-[10px] text-slate-400 font-bold italic">
           Disclaimer: This is based on wearable device telemetry and does not represent clinical
           diagnostics.
@@ -620,7 +620,7 @@ export const GuardianMomentCard: React.FC<{
   onGrant?: () => void;
 }> = ({ title, status, reassurance, onGrant }) => (
   <View
-    className="bg-white border border-[#e2dfd9] rounded-[32px] p-6 shadow-sm space-y-4"
+    className="bg-white border border-slate-200 rounded-2xl p-6 shadow-sm space-y-4"
     accessibilityLabel={`Guardian Moment: ${title}, status ${status}`}
   >
     <View className="flex-row justify-between items-center">
@@ -654,10 +654,10 @@ export const AIMessageBubble: React.FC<{
   const isAi = sender === 'ai';
   return (
     <View
-      className={`p-4 rounded-3xl max-w-[80%] my-1.5 ${
+      className={`p-4 rounded-2xl max-w-[80%] my-1.5 ${
         isAi
-          ? 'bg-white border border-[#e2dfd9] rounded-tl-none self-start'
-          : 'bg-[#2a14b4] rounded-tr-none self-end'
+          ? 'bg-white border border-slate-200 rounded-tl-none self-start'
+          : 'bg-[#2563eb] rounded-tr-none self-end'
       }`}
       accessibilityLabel={`${isAi ? 'AI' : 'User'} message: ${text} sent at ${timestamp}`}
     >
@@ -738,7 +738,7 @@ export const DocumentCard: React.FC<{
 }> = ({ name, hospital, date, type, onPress }) => (
   <TouchableOpacity
     onPress={onPress}
-    className="bg-white border border-[#e2dfd9] rounded-3xl p-4 flex-row items-center gap-3.5 shadow-sm active:scale-98"
+    className="bg-white border border-slate-200 rounded-2xl p-4 flex-row items-center gap-3.5 shadow-sm active:scale-98"
     accessibilityRole="button"
     accessibilityLabel={`Medical Document: ${name} from ${hospital} dated ${date}`}
   >
@@ -782,7 +782,7 @@ export const NotificationItem: React.FC<{
     </View>
     <View className="flex-grow space-y-0.5">
       <View className="flex-row justify-between items-center">
-        <Text className={`text-xs font-black ${unread ? 'text-slate-800' : 'text-slate-550'}`}>
+        <Text className={`text-xs font-black ${unread ? 'text-slate-800' : 'text-slate-500'}`}>
           {title}
         </Text>
         <Text className="text-[9px] font-bold text-slate-400">{time}</Text>
@@ -807,7 +807,7 @@ export const PermissionRow: React.FC<{
   >
     <View className="flex-1 pr-4 space-y-0.5">
       <Text className="text-sm font-black text-violet-950">{label}</Text>
-      <Text className="text-[10px] text-violet-750 font-bold leading-snug">{description}</Text>
+      <Text className="text-[10px] text-violet-700 font-bold leading-snug">{description}</Text>
     </View>
     <Switch
       value={enabled}
@@ -830,7 +830,7 @@ export const HealthMetric: React.FC<{
   color?: string;
 }> = ({ label, value, unit, status, color = '#2a14b4' }) => (
   <View
-    className="bg-white border border-[#e2dfd9] rounded-3xl p-4.5 items-center justify-center flex-1 space-y-1.5"
+    className="bg-white border border-slate-200 rounded-2xl p-4.5 items-center justify-center flex-1 space-y-1.5"
     accessibilityLabel={`Health Metric ${label}: ${value} ${unit}, Status: ${status}`}
   >
     <Text className="text-[10px] font-black text-slate-400 uppercase tracking-widest">{label}</Text>
@@ -960,7 +960,7 @@ export const SecondaryButton: React.FC<{
     accessibilityRole="button"
     accessibilityLabel={label}
   >
-    <Text className="text-slate-650 font-black text-xs uppercase tracking-wider">{label}</Text>
+    <Text className="text-slate-600 font-black text-xs uppercase tracking-wider">{label}</Text>
   </TouchableOpacity>
 );
 

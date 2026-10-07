@@ -239,7 +239,7 @@ export default function ParentProfileRoute() {
 
   return (
     <DeviceFrame>
-      <View className="flex-1 relative bg-[#f2f2f7]">
+      <View className="flex-1 relative bg-slate-50">
         {/* Header */}
         <View className="bg-white pt-6 pb-5 px-6 border-b border-neutral-100 space-y-1">
           <Text className="text-[10px] font-bold text-neutral-400 uppercase tracking-wider">
@@ -248,7 +248,7 @@ export default function ParentProfileRoute() {
           <Text className="text-2xl font-bold text-neutral-900 tracking-tight">My Profile</Text>
         </View>
 
-        <ScrollView className="flex-1 p-5 space-y-5">
+        <ScrollView className="flex-1 p-5 space-y-5" contentContainerStyle={{ paddingBottom: 110 }} showsVerticalScrollIndicator={false}>
           {/* Options List Inset Grouped */}
           <View className="bg-white border border-neutral-100 rounded-2xl shadow-sm divide-y divide-neutral-200/80 overflow-hidden">
             {profileOptions.map((opt, idx) => {

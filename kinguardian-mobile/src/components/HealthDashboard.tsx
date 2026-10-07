@@ -320,8 +320,12 @@ export const HealthDashboard: React.FC<HealthDashboardProps> = ({
     loadWearables();
     // Real-time live Google Fit streaming
     const resolvedSubjectId = primaryPerson?.backendSubjectId || primaryPerson?.id;
-    googleFitService.initPedometer(resolvedSubjectId);
-    googleFitService.startRealTimeStreaming(resolvedSubjectId, 3500);
+    if (typeof googleFitService?.initPedometer === 'function') {
+      googleFitService.initPedometer(resolvedSubjectId);
+    }
+    if (typeof googleFitService?.startRealTimeStreaming === 'function') {
+      googleFitService.startRealTimeStreaming(resolvedSubjectId, 3500);
+    }
     const unsubscribe = googleFitService.subscribe((data) => {
       if (data.isConnected || data.steps > 0 || data.source !== 'none') {
         setWearableSummary((prev) => {
@@ -390,24 +394,24 @@ export const HealthDashboard: React.FC<HealthDashboardProps> = ({
   };
 
   return (
-    <View className="flex-1 bg-gradient-to-b from-slate-50 via-white to-slate-50">
-      {/* Header Profile / Timezone translation */}
-      <View className="w-full bg-white/80 backdrop-blur-xl border-b border-slate-100/50 pt-8 pb-6 px-6 space-y-4 shadow-sm">
+    <View className="flex-1 bg-slate-50">
+      {/* Sleek, professional Coordinator Header */}
+      <View className="w-full bg-white border-b border-slate-200/60 pt-3 pb-3 px-5 shadow-xs">
         <View className="flex-row items-center justify-between">
-          <View className="flex-1 pr-4">
-            <View className="flex-row items-center gap-2 flex-wrap">
-              <View className="bg-gradient-to-r from-blue-500 to-blue-600 px-3 py-1 rounded-full">
-                <Text className="text-[10px] font-bold text-white uppercase tracking-wider">
-                  Coordinator Portal
+          <View className="flex-1 pr-3">
+            <View className="flex-row items-center gap-1.5 flex-wrap">
+              <View className="bg-blue-50 px-2.5 py-0.5 rounded-full border border-blue-200/80">
+                <Text className="text-[10px] font-bold text-blue-700 uppercase tracking-wider">
+                  Coordinator
                 </Text>
               </View>
               {familyName ? (
-                <View className="bg-slate-100 px-3 py-1 rounded-full border border-slate-200">
+                <View className="bg-slate-100 px-2.5 py-0.5 rounded-full border border-slate-200">
                   <Text className="text-[10px] font-bold text-slate-700">{familyName}</Text>
                 </View>
               ) : null}
               <View
-                className={`px-3 py-1 rounded-full border ${
+                className={`px-2.5 py-0.5 rounded-full border ${
                   dataConnection === 'live'
                     ? 'bg-emerald-50 border-emerald-200'
                     : dataConnection === 'offline'
@@ -432,29 +436,26 @@ export const HealthDashboard: React.FC<HealthDashboardProps> = ({
                 </Text>
               </View>
             </View>
-            <Text className="text-3xl font-bold text-slate-900 tracking-tight mt-2">
+            <Text className="text-xl font-bold text-slate-900 tracking-tight mt-1">
               Good morning, {displayCoordinatorName}
             </Text>
-            <Text className="text-sm text-slate-500 mt-1">
-              Here's what's happening with your family today
-            </Text>
           </View>
-          <View className="flex-row items-center gap-3">
+          <View className="flex-row items-center gap-2">
             <TouchableOpacity
               onPress={onOpenNotifications}
-              className="w-11 h-11 bg-gradient-to-br from-blue-50 to-blue-100 rounded-3xl items-center justify-center relative active:scale-95 shadow-sm border border-blue-200"
+              className="w-10 h-10 bg-slate-50 border border-slate-200 rounded-full items-center justify-center relative active:scale-95 shadow-xs"
             >
-              <Bell size={18} color="#007aff" />
+              <Bell size={18} color="#2563eb" />
               {unreadCount > 0 && (
-                <View className="absolute -top-1 -right-1 bg-gradient-to-r from-red-500 to-red-600 w-5 h-5 rounded-full items-center justify-center border-2 border-white shadow-sm">
-                  <Text className="text-white text-[10px] font-bold">{unreadCount}</Text>
+                <View className="absolute -top-1 -right-1 bg-red-500 w-4 h-4 rounded-full items-center justify-center border border-white">
+                  <Text className="text-white text-[9px] font-bold">{unreadCount}</Text>
                 </View>
               )}
             </TouchableOpacity>
 
             <TouchableOpacity
               onPress={() => onOpenQuickActions('menu')}
-              className="w-11 h-11 bg-gradient-to-br from-slate-50 to-slate-100 rounded-3xl items-center justify-center active:scale-95 shadow-sm border border-slate-200"
+              className="w-10 h-10 bg-slate-50 border border-slate-200 rounded-full items-center justify-center active:scale-95 shadow-xs"
             >
               <Clock size={18} color="#64748b" />
             </TouchableOpacity>
@@ -462,39 +463,41 @@ export const HealthDashboard: React.FC<HealthDashboardProps> = ({
             {onLogout && (
               <TouchableOpacity
                 onPress={onLogout}
-                className="w-11 h-11 bg-gradient-to-br from-red-50 to-red-100 rounded-3xl items-center justify-center active:scale-95 shadow-sm border border-red-200"
+                className="w-10 h-10 bg-red-50 border border-red-200 rounded-full items-center justify-center active:scale-95 shadow-xs"
               >
                 <LogOut size={18} color="#ef4444" />
               </TouchableOpacity>
             )}
           </View>
         </View>
+      </View>
 
+      <ScrollView className="flex-1 px-5 pt-4 space-y-5" contentContainerStyle={{ paddingBottom: 110 }}>
         {/* Location Translation Pills & Emergency Summary Link */}
-        <View className="flex-row items-center gap-3 flex-wrap">
-          <View className="flex-row items-center gap-2 bg-gradient-to-r from-blue-50 to-blue-100 px-4 py-2 rounded-3xl border border-blue-200 shadow-sm">
-            <MapPin size={12} color="#007aff" />
+        <View className="flex-row items-center gap-2 flex-wrap">
+          <View className="flex-row items-center gap-1.5 bg-blue-50 px-3 py-1.5 rounded-full border border-blue-200 shadow-xs">
+            <MapPin size={11} color="#2563eb" />
             <Text className="text-[11px] font-semibold text-blue-700">You — Coordinator</Text>
           </View>
-          <View className="flex-row items-center gap-2 bg-gradient-to-r from-emerald-50 to-emerald-100 px-4 py-2 rounded-3xl border border-emerald-200 shadow-sm">
-            <MapPin size={12} color="#10b981" />
+          <View className="flex-row items-center gap-1.5 bg-emerald-50 px-3 py-1.5 rounded-full border border-emerald-200 shadow-xs">
+            <MapPin size={11} color="#10b981" />
             <Text className="text-[11px] font-semibold text-emerald-700">
               {primaryName} — {primaryLocation}
             </Text>
           </View>
           <TouchableOpacity
             onPress={() => router.push(`/(coordinator)/parent/${primaryPerson?.id || 'dad'}/summary` as any)}
-            className="flex-row items-center gap-1.5 bg-red-50 px-3.5 py-1.5 rounded-3xl border border-red-200 shadow-sm active:scale-95 ml-auto"
+            className="flex-row items-center gap-1.5 bg-red-50 px-3 py-1.5 rounded-full border border-red-200 shadow-xs active:scale-95 ml-auto"
           >
-            <ShieldCheck size={12} color="#ef4444" />
+            <ShieldCheck size={11} color="#ef4444" />
             <Text className="text-[10px] font-bold text-red-700">Emergency Summary</Text>
           </TouchableOpacity>
         </View>
 
         {/* Global Search Bar (TEST SEC-001) */}
-        <View className="mt-3.5 space-y-2">
+        <View className="space-y-2">
           <View className="flex-row items-center bg-white rounded-2xl px-3.5 py-1 border border-slate-200 shadow-xs">
-            <Search size={16} color="#007aff" />
+            <Search size={16} color="#2563eb" />
             <TextInput
               testID="coordinator-search-input"
               accessibilityLabel={`Search ${primaryName} medication, vitals and records`}
@@ -509,19 +512,19 @@ export const HealthDashboard: React.FC<HealthDashboardProps> = ({
               onSubmitEditing={() => handleExecuteSearch(searchQuery)}
               placeholder={`Search "${primaryName} medication", vitals, records...`}
               placeholderTextColor="#94a3b8"
-              className="flex-1 px-3 py-2.5 text-xs text-slate-800 font-semibold"
+              className="flex-1 px-3 py-2 text-xs text-slate-800 font-semibold"
               returnKeyType="search"
             />
             {searchQuery ? (
-              <TouchableOpacity testID="coordinator-search-clear" onPress={handleClearSearch} className="p-1.5 mr-1">
-                <X size={15} color="#94a3b8" />
+              <TouchableOpacity testID="coordinator-search-clear" onPress={handleClearSearch} className="p-1 mr-1">
+                <X size={14} color="#94a3b8" />
               </TouchableOpacity>
             ) : null}
             <TouchableOpacity
               testID="coordinator-search-button"
               accessibilityLabel="Execute search"
               onPress={() => handleExecuteSearch(searchQuery)}
-              className="bg-[#007aff] px-3 py-1.5 rounded-xl active:opacity-90"
+              className="bg-blue-600 px-3 py-1.5 rounded-xl active:opacity-90"
             >
               <Text className="text-white text-[11px] font-bold">
                 {isSearching ? '...' : 'Search'}
@@ -541,7 +544,7 @@ export const HealthDashboard: React.FC<HealthDashboardProps> = ({
                     setSearchQuery(suggestion);
                     handleExecuteSearch(suggestion);
                   }}
-                  className="bg-slate-100 px-2 py-0.5 rounded-lg border border-slate-200/60 active:bg-blue-50 active:border-blue-200"
+                  className="bg-slate-100 px-2.5 py-1 rounded-lg border border-slate-200/60 active:bg-blue-50 active:border-blue-200"
                 >
                   <Text className="text-[10px] text-slate-600 font-medium">{suggestion}</Text>
                 </TouchableOpacity>
@@ -659,9 +662,6 @@ export const HealthDashboard: React.FC<HealthDashboardProps> = ({
             </View>
           )}
         </View>
-      </View>
-
-      <ScrollView className="flex-1 px-6 pt-6 space-y-6">
         {/* Today's Attention Alert Section */}
         <View className="space-y-3">
           <Text className="text-xs font-bold text-slate-400 uppercase tracking-wider pl-1">

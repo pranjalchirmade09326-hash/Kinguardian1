@@ -1,5 +1,6 @@
 import { useContext, useState } from 'react';
 import { View, Text, ScrollView, TouchableOpacity, TextInput } from 'react-native';
+import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import { AppContext } from '../../src/store/AppContext';
 import { DeviceFrame } from '../../src/components/DeviceFrame';
 import { SimulatorControls } from '../../src/components/SimulatorControls';
@@ -12,6 +13,7 @@ export default function FamilyCommunicationRoute() {
 
   const [chatInput, setChatInput] = useState('');
   const [sending, setSending] = useState(false);
+  const insets = useSafeAreaInsets();
 
   if (!context) return null;
 
@@ -90,27 +92,33 @@ export default function FamilyCommunicationRoute() {
 
   return (
     <DeviceFrame>
-      <View className="flex-1 relative bg-[#f2f2f7]">
+      <View className="flex-1 relative bg-slate-50">
         {/* Header */}
-        <View className="px-6 py-5 border-b border-neutral-100 bg-white flex-row items-center gap-3">
+        <View className="px-6 py-5 border-b border-slate-200 bg-white flex-row items-center gap-3">
           <TouchableOpacity
             onPress={() => router.back()}
-            className="p-1 bg-neutral-100 rounded-full active:scale-90"
+            className="p-1 bg-slate-100 rounded-full active:scale-90"
           >
             <ArrowLeft size={18} color="#8e8e93" />
           </TouchableOpacity>
           <View>
-            <Text className="text-[10px] font-bold text-neutral-400 uppercase tracking-wider">
+            <Text className="text-[10px] font-bold text-slate-400 uppercase tracking-wider">
               Care Circle Chat Log
             </Text>
-            <Text className="text-xl font-bold text-neutral-900 tracking-tight mt-0.5">
+            <Text className="text-xl font-bold text-slate-900 tracking-tight mt-0.5">
               Family Chat
             </Text>
           </View>
         </View>
 
         {/* Chat Feed */}
-        <ScrollView testID="family-chat-thread" accessibilityLabel="Family chat conversation" className="flex-1 px-5 pt-4 space-y-4">
+        <ScrollView
+          testID="family-chat-thread"
+          accessibilityLabel="Family chat conversation"
+          className="flex-1 px-5 pt-4 space-y-4"
+          contentContainerStyle={{ paddingBottom: Math.max(insets.bottom, 16) + 90 }}
+          showsVerticalScrollIndicator={false}
+        >
           <View className="space-y-4 pb-28">
             {displayMessages.map((msg, idx) => {
               if (msg.isSystem) {
@@ -200,7 +208,10 @@ export default function FamilyCommunicationRoute() {
         </ScrollView>
 
         {/* Chat input box at the bottom */}
-        <View className="absolute bottom-0 left-0 right-0 bg-white border-t border-neutral-200/80 p-4 pb-6 flex-row items-center gap-2">
+        <View
+          style={{ paddingBottom: Math.max(insets.bottom, 16) }}
+          className="absolute bottom-0 left-0 right-0 bg-white border-t border-slate-200 px-4 pt-3 flex-row items-center gap-2"
+        >
           <TextInput
             testID="family-chat-input"
             accessibilityLabel="Family chat message input"
@@ -208,7 +219,7 @@ export default function FamilyCommunicationRoute() {
             placeholderTextColor="#8e8e93"
             value={chatInput}
             onChangeText={setChatInput}
-            className="flex-1 bg-neutral-100 border border-neutral-200/50 rounded-full px-4 py-2.5 text-xs text-neutral-800 font-semibold"
+            className="flex-1 bg-slate-100 border border-slate-200 rounded-full px-4 py-2.5 text-xs text-slate-800 font-semibold"
           />
           <TouchableOpacity
             testID="family-chat-send"

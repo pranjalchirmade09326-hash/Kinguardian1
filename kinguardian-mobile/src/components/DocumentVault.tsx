@@ -336,7 +336,7 @@ export const DocumentVault: React.FC<DocumentVaultProps> = ({
   };
 
   return (
-    <ScrollView className="flex-1 bg-[#f2f2f7]">
+    <ScrollView className="flex-1 bg-slate-50" contentContainerStyle={{ paddingBottom: 110 }} showsVerticalScrollIndicator={false}>
       {/* Mini Header */}
       <View className="flex-row items-center justify-between px-6 py-4 border-b border-neutral-100 bg-white shadow-xs">
         <View>

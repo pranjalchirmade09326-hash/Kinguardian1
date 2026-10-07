@@ -8,8 +8,7 @@
  * - COORD-006 (P1): Multiple notifications exist -> Notifications grouped intelligently, can be opened/dismissed.
  */
 
-import React from 'react';
-import { render, screen, fireEvent, waitFor } from '@testing-library/react-native';
+import { render, fireEvent, waitFor } from '@testing-library/react-native';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { authService } from '../src/services/auth/authService';
 import { realDataService } from '../src/services/api-client/RealDataService';

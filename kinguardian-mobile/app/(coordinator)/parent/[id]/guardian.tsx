@@ -100,9 +100,9 @@ export default function GuardianMomentRoute() {
 
   return (
     <DeviceFrame>
-      <View className="flex-1 relative bg-[#fbfaf7]">
+      <View className="flex-1 relative bg-slate-50">
         {/* Header */}
-        <View className="flex-row items-center justify-between px-5 py-4 border-b border-[#e2dfd9] bg-[#fbfaf7]">
+        <View className="flex-row items-center justify-between px-5 py-4 border-b border-slate-200 bg-white">
           <TouchableOpacity
             onPress={() => router.replace('/(coordinator)')}
             className="p-2 bg-slate-100 rounded-full"
@@ -123,7 +123,7 @@ export default function GuardianMomentRoute() {
           </TouchableOpacity>
         </View>
 
-        <ScrollView className="flex-1 p-5 space-y-6">
+        <ScrollView className="flex-1 p-5 space-y-6" contentContainerStyle={{ paddingBottom: 60 }} showsVerticalScrollIndicator={false}>
           {/* Header Title & Slogan */}
           <View className="space-y-2">
             <View className="flex-row items-center justify-between">
@@ -161,7 +161,7 @@ export default function GuardianMomentRoute() {
           )}
 
           {/* Activity Trend Line Chart */}
-          <View className="bg-white border border-[#e2dfd9] rounded-3xl p-5 shadow-sm space-y-3.5">
+          <View className="bg-white border border-slate-200 rounded-2xl p-5 shadow-sm space-y-3.5">
             <View className="flex-row justify-between items-center">
               <View>
                 <Text className="text-[10px] font-bold text-slate-400 uppercase">
@@ -214,7 +214,7 @@ export default function GuardianMomentRoute() {
             <Text className="text-sm font-black text-slate-800 uppercase tracking-wider">
               Observation
             </Text>
-            <View className="bg-white border border-[#e2dfd9] rounded-3xl p-5 shadow-sm space-y-2">
+            <View className="bg-white border border-slate-200 rounded-2xl p-5 shadow-sm space-y-2">
               <Text
                 testID="guardian-detail-observation"
                 className="text-xs text-slate-700 leading-relaxed font-semibold"
@@ -236,7 +236,7 @@ export default function GuardianMomentRoute() {
             <Text className="text-sm font-black text-slate-800 uppercase tracking-wider">
               Data Sources Considered
             </Text>
-            <View testID="guardian-detail-sources" className="bg-white border border-[#e2dfd9] rounded-3xl p-5 shadow-sm space-y-3">
+            <View testID="guardian-detail-sources" className="bg-white border border-slate-200 rounded-2xl p-5 shadow-sm space-y-3">
               {(moment?.sources || [
                 'Smart Watch (17 readings)',
                 'Chennai Weather Telemetry (38-42°C)',
@@ -325,7 +325,7 @@ export default function GuardianMomentRoute() {
                 context.setCheckInOpen(true);
                 router.replace('/(coordinator)');
               }}
-              className="bg-white border border-[#e2dfd9] rounded-3xl p-4.5 flex-row items-center justify-between shadow-xs active:scale-99"
+              className="bg-white border border-slate-200 rounded-2xl p-4.5 flex-row items-center justify-between shadow-xs active:scale-99"
             >
               <View className="flex-row items-center gap-3">
                 <View className="w-8 h-8 rounded-full bg-[#f4effc] items-center justify-center">
@@ -345,7 +345,7 @@ export default function GuardianMomentRoute() {
             <TouchableOpacity
               testID="guardian-detail-next-step-caregiver"
               onPress={() => router.push('/(coordinator)/family' as any)}
-              className="bg-white border border-[#e2dfd9] rounded-3xl p-4.5 flex-row items-center justify-between shadow-xs active:scale-99"
+              className="bg-white border border-slate-200 rounded-2xl p-4.5 flex-row items-center justify-between shadow-xs active:scale-99"
             >
               <View className="flex-row items-center gap-3">
                 <View className="w-8 h-8 rounded-full bg-[#ecfdf5] items-center justify-center">
@@ -365,7 +365,7 @@ export default function GuardianMomentRoute() {
             <TouchableOpacity
               testID="guardian-detail-next-step-baselines"
               onPress={() => router.push(`/(coordinator)/parent/${personId}/insights` as any)}
-              className="bg-white border border-[#e2dfd9] rounded-3xl p-4.5 flex-row items-center justify-between shadow-xs active:scale-99"
+              className="bg-white border border-slate-200 rounded-2xl p-4.5 flex-row items-center justify-between shadow-xs active:scale-99"
             >
               <View className="flex-row items-center gap-3">
                 <View className="w-8 h-8 rounded-full bg-[#eff4ff] items-center justify-center">

@@ -146,7 +146,7 @@ export default function ParentFamilyScreen() {
 
   return (
     <DeviceFrame>
-      <View className="flex-1 bg-[#f2f2f7]">
+      <View className="flex-1 bg-slate-50">
         {/* Header */}
         <View className="bg-white pt-6 pb-4 px-6 border-b border-neutral-100 flex-row items-center justify-between">
           <View className="flex-row items-center gap-3">
@@ -176,6 +176,8 @@ export default function ParentFamilyScreen() {
 
         <ScrollView
           className="flex-1 p-5 space-y-5"
+          contentContainerStyle={{ paddingBottom: 110 }}
+          showsVerticalScrollIndicator={false}
           refreshControl={<RefreshControl refreshing={refreshing} onRefresh={onRefresh} />}
         >
           {loading ? (

@@ -273,7 +273,7 @@ export const SearchRecordsScreen: React.FC<SearchRecordsScreenProps> = ({
   }
 
   return (
-    <ScrollView className="flex-1 bg-[#f2f2f7]">
+    <ScrollView className="flex-1 bg-slate-50" contentContainerStyle={{ paddingBottom: 110 }} showsVerticalScrollIndicator={false}>
       {/* Search Header Segment */}
       <View className="bg-white border-b border-neutral-100 pt-5 pb-3 px-5 space-y-3">
         <View className="flex-row items-center justify-between">
