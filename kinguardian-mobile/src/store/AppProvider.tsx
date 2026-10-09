@@ -460,13 +460,29 @@ export const AppProvider: React.FC<{ children: React.ReactNode }> = ({ children 
         setPeople(resolvedParents);
         setFamilyMembers(liveMembers);
 
-        const fatherPerson = resolvedParents.find(
-          (p) =>
-            p.relationship?.toLowerCase().includes('father') ||
-            p.relation?.toLowerCase().includes('father')
-        );
-        if (fatherPerson) {
-          setCurrentPersonId(fatherPerson.id);
+        let targetPerson = null;
+        if (session?.user?.role === 'parent' && session?.user?.id) {
+          targetPerson = resolvedParents.find(
+            (p) =>
+              p.id === session.user.id ||
+              p.backendSubjectId === session.user.id ||
+              (p.name && session.user.displayName && p.name.toLowerCase().includes(session.user.displayName.toLowerCase())) ||
+              (p.name && session.user.email && p.name.toLowerCase().includes(session.user.email.split('@')[0].toLowerCase()))
+          );
+        }
+        if (!targetPerson) {
+          targetPerson = resolvedParents.find(
+            (p) =>
+              p.relationship?.toLowerCase().includes('father') ||
+              p.relation?.toLowerCase().includes('father') ||
+              p.name?.toLowerCase().includes('aniruddha')
+          );
+        }
+        if (!targetPerson && resolvedParents.length > 0) {
+          targetPerson = resolvedParents[0];
+        }
+        if (targetPerson) {
+          setCurrentPersonId(targetPerson.id);
         }
       }
 

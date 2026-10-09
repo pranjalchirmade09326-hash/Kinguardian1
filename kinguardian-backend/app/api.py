@@ -3913,7 +3913,7 @@ async def list_members(family_id: uuid.UUID, session: AsyncSession = Depends(get
         if "anjali" in nl or "anjali" in el:
             return "Daughter"
         if role == "parent":
-            if "ramesh" in nl or "ramesh" in el or "dad" in nl:
+            if "aniruddha" in nl or "aniruddha" in el or "ramesh" in nl or "ramesh" in el or "dad" in nl:
                 return "Father"
             if "vandana" in nl or "vandana" in el or "mom" in nl:
                 return "Mother"

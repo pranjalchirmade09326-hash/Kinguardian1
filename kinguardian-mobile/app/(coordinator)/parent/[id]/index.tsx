@@ -240,21 +240,14 @@ export default function ParentClinicalOverviewRoute() {
               </View>
             </View>
 
-            {/* Quick Actions: Open App & Manage */}
-            <View className="flex-row gap-2 pt-1">
-              <TouchableOpacity
-                onPress={() => googleFitService.openGoogleFitApp()}
-                className="flex-1 bg-emerald-50 border border-emerald-200/80 active:bg-emerald-100 py-2 rounded-xl flex-row items-center justify-center gap-1.5"
-              >
-                <Activity size={12} color="#059669" />
-                <Text className="text-[11px] font-bold text-emerald-800">Open Google Fit App ↗</Text>
-              </TouchableOpacity>
+            {/* Quick Actions: Manage Wearables */}
+            <View className="pt-1">
               <TouchableOpacity
                 onPress={() => router.push(`/(coordinator)/parent/${personId}/wearables` as any)}
-                className="flex-1 bg-slate-100 active:bg-slate-200 py-2 rounded-xl flex-row items-center justify-center gap-1.5"
+                className="w-full bg-slate-100 active:bg-slate-200 py-2.5 rounded-xl flex-row items-center justify-center gap-1.5"
               >
-                <Watch size={12} color="#007aff" />
-                <Text className="text-[11px] font-bold text-[#007aff]">Wearables & Sync →</Text>
+                <Watch size={13} color="#007aff" />
+                <Text className="text-xs font-bold text-[#007aff]">Wearables & Sync →</Text>
               </TouchableOpacity>
             </View>
           </View>

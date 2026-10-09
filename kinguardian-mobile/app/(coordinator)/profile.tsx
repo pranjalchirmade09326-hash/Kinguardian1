@@ -23,7 +23,6 @@ import {
 } from 'lucide-react-native';
 import { authService } from '../../src/services/auth/authService';
 import { confirmAction } from '../../src/utils/alert';
-import { googleFitService } from '../../src/services/health/GoogleFitService';
 import { ApiFamilyService } from '../../src/services';
 import { CONFIG } from '../../src/constants/config';
 
@@ -480,16 +479,6 @@ export default function CoordinatorProfileRoute() {
                     <Text className="text-xs font-bold text-[#34c759]">Live Active</Text>
                   </View>
                 </View>
-
-                <TouchableOpacity
-                  onPress={() => {
-                    googleFitService.openGoogleFitApp();
-                    setShowDevicesModal(false);
-                  }}
-                  className="w-full bg-[#007aff] py-3.5 rounded-xl items-center justify-center mt-2 active:opacity-90"
-                >
-                  <Text className="text-white text-xs font-bold">Open Google Fit App ↗</Text>
-                </TouchableOpacity>
               </ScrollView>
             </View>
           </View>

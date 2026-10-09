@@ -320,7 +320,9 @@ export const HealthDashboard: React.FC<HealthDashboardProps> = ({
     loadWearables();
     // Real-time live Google Fit streaming
     const resolvedSubjectId = primaryPerson?.backendSubjectId || primaryPerson?.id;
-    googleFitService.initPedometer(resolvedSubjectId);
+    if (typeof googleFitService?.initPedometer === 'function') {
+      googleFitService.initPedometer(resolvedSubjectId);
+    }
     googleFitService.startRealTimeStreaming(resolvedSubjectId, 3500);
     const unsubscribe = googleFitService.subscribe((data) => {
       if (data.isConnected || data.steps > 0 || data.source !== 'none') {
@@ -1108,7 +1110,7 @@ export const HealthDashboard: React.FC<HealthDashboardProps> = ({
               </View>
             </View>
 
-            {/* Actions: View Devices, Sync & Open Google Fit */}
+            {/* Actions: View Devices & Sync Now */}
             <View className="flex-row items-center gap-2 pt-3 border-t border-slate-100">
               <TouchableOpacity
                 onPress={() => router.push('/(coordinator)/devices' as any)}
@@ -1121,7 +1123,9 @@ export const HealthDashboard: React.FC<HealthDashboardProps> = ({
               <TouchableOpacity
                 onPress={async () => {
                   const targetSubId = primaryPerson?.backendSubjectId || primaryPerson?.id;
-                  await googleFitService.initPedometer(targetSubId);
+                  if (typeof googleFitService?.initPedometer === 'function') {
+                    await googleFitService.initPedometer(targetSubId);
+                  }
                   await googleFitService.connectGoogleFit(targetSubId);
                   await googleFitService.fetchLatestData(targetSubId);
                   await loadWearables();
@@ -1132,16 +1136,6 @@ export const HealthDashboard: React.FC<HealthDashboardProps> = ({
                 <RefreshCw size={14} color="#059669" />
                 <Text className="text-xs font-bold text-emerald-800">
                   Sync Now
-                </Text>
-              </TouchableOpacity>
-
-              <TouchableOpacity
-                onPress={() => googleFitService.openGoogleFitApp()}
-                className="flex-1 bg-gradient-to-r from-emerald-50 to-emerald-100 active:from-emerald-100 active:to-emerald-200 py-3 rounded-2xl flex-row items-center justify-center gap-2 shadow-sm border border-emerald-200"
-              >
-                <Activity size={14} color="#059669" />
-                <Text className="text-xs font-bold text-emerald-800">
-                  Open App ↗
                 </Text>
               </TouchableOpacity>
             </View>

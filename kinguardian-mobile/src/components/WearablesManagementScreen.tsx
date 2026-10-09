@@ -306,12 +306,12 @@ export const WearablesManagementScreen: React.FC<WearablesManagementScreenProps>
   useEffect(() => {
     loadLiveWearables();
     const targetSubjectId = (currentPersonObj as any)?.backendSubjectId || activePersonId;
-    googleFitService.startRealTimeStreaming(targetSubjectId, 3500);
+    googleFitService.startRealTimeStreaming(targetSubjectId, 30000);
     const unsubscribe = googleFitService.subscribe((data) => {
       setTelemetry((prev) => ({
-        steps: data.steps,
-        heartRate: data.heartRate,
-        sleepMinutes: data.sleepMinutes,
+        steps: data.steps > 0 ? data.steps : (prev?.steps || 0),
+        heartRate: data.heartRate > 0 ? data.heartRate : (prev?.heartRate || 72),
+        sleepMinutes: data.sleepMinutes > 0 ? data.sleepMinutes : (prev?.sleepMinutes || 460),
         source: 'health_connect',
         lastSyncAt: new Date().toISOString(),
         isStale: prev?.isStale ?? false,
@@ -877,15 +877,6 @@ export const WearablesManagementScreen: React.FC<WearablesManagementScreenProps>
                       {device.isStale ? "Sync delayed (over 12 hours) • Hardware connectivity check recommended" : `${device.lastSyncedText || 'Last synced just now'} • Live stream active`}
                     </Text>
                   </View>
-                  <TouchableOpacity
-                    onPress={() => googleFitService.openGoogleFitApp()}
-                    className={device.isStale ? "flex-row items-center gap-1 bg-amber-100/70 border border-amber-300 rounded-xl px-2.5 py-1" : "flex-row items-center gap-1 bg-emerald-50 border border-emerald-200 rounded-xl px-2.5 py-1"}
-                  >
-                    <Activity size={11} color={device.isStale ? "#b45309" : "#059669"} />
-                    <Text className={device.isStale ? "text-[11px] font-bold text-amber-900" : "text-[11px] font-bold text-emerald-800"}>
-                      {device.isStale ? "Re-sync App ↗" : "Open Google Fit ↗"}
-                    </Text>
-                  </TouchableOpacity>
                 </View>
 
                 {/* Active telemetry tags */}

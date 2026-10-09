@@ -162,7 +162,16 @@ class AuthService {
     await Promise.all([
       AsyncStorage.setItem(STORAGE_KEY_ACCESS_TOKEN, tokens.access_token),
       AsyncStorage.setItem(STORAGE_KEY_REFRESH_TOKEN, tokens.refresh_token),
-      AsyncStorage.setItem(STORAGE_KEY_USER, JSON.stringify(user))
+      AsyncStorage.setItem(STORAGE_KEY_USER, JSON.stringify(user)),
+      AsyncStorage.multiRemove([
+        'kinguardian_people',
+        'kinguardian_medications',
+        'kinguardian_notifications',
+        'kinguardian_tasks',
+        'kinguardian_records',
+        'kinguardian_scenario',
+        'kinguardian_bp'
+      ])
     ]);
 
     const session: AuthSession = {
@@ -187,7 +196,16 @@ class AuthService {
       await Promise.all([
         AsyncStorage.removeItem(STORAGE_KEY_ACCESS_TOKEN),
         AsyncStorage.removeItem(STORAGE_KEY_REFRESH_TOKEN),
-        AsyncStorage.removeItem(STORAGE_KEY_USER)
+        AsyncStorage.removeItem(STORAGE_KEY_USER),
+        AsyncStorage.multiRemove([
+          'kinguardian_people',
+          'kinguardian_medications',
+          'kinguardian_notifications',
+          'kinguardian_tasks',
+          'kinguardian_records',
+          'kinguardian_scenario',
+          'kinguardian_bp'
+        ])
       ]);
       
       this.notifyAuthChange(null);
